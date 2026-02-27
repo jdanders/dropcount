@@ -1,0 +1,46 @@
+DropCount é uma recriação fiel do clássico jogo de puzzle Drop7 para Android, construído com Kotlin e Jetpack Compose.<br>
+<br>
+<b>Jogabilidade Principal</b><br>
+<ul>
+<li>Grade 7×7: Jogabilidade clássica de Drop7 com discos numerados e sólidos</li>
+<li>Partidas: Destrua discos criando sequências de discos que correspondam aos números nos mesmos</li>
+<li>Reações em Cadeia: Crie combos em cascata para pontuações mais altas</li>
+<li>Dificuldade Dinâmica: Novas linhas aparecem de baixo com base no modo de jogo</li>
+</ul>
+<br>
+<b>Modos de Jogo</b><br>
+<br>
+1. Modo Normal<br>
+<ul>
+<li>Nova linha a cada 30 lançamentos, depois 29, 28, 27... (decrescente)</li>
+</ul>
+<br>
+2. Modo Desafio<br>
+<ul>
+<li>Predefinições de dificuldade configurables: Fácil, Médio, Difícil, Extremo</li>
+<li>Taxa de lançamento fixa para um desafio constante</li>
+</ul>
+<br>
+3. Modo Sequência<br>
+<ul>
+<li>Mesmas regras do modo Normal</li>
+<li>Geração determinística de discos para resolução de puzzles</li>
+<li>Sequências previsíveis para planejamento estratégico</li>
+</ul>
+<br>
+<b>Recursos</b><br>
+<ul>
+<li>Rastreamento de Recordes: Persistência de recordes por modo</li>
+<li>Interface Bonita: Design moderno Material 3 com fundos em gradiente</li>
+<li>Animações: Lançamentos de discos suaves e efeitos de quebra</li>
+<li>Pausar/Retomar: Pause o jogo a qualquer momento</li>
+</ul>
+<br>
+<b>Como Jogar</b><br>
+1. Toque em uma coluna para lançar o disco atual<br>
+2. Corresponder números: Um disco quebra quando discos contíguos em sua linha OU coluna são iguais ao seu número<br>
+3. Reações em cadeia: Quebrar discos pode desencadear mais quebras para pontos de bônus<br>
+4. Discos sólidos: Aparecem em cinza sólido, racham uma vez após a primeira quebra adjacente, revelam um número após a segunda quebra adjacente<br>
+5. Sobreviver: Evite ultrapassar a linha superior da grade<br>
+<br>
+DropCount é completamente gratuito e de código aberto, sem anúncios ou compras no aplicativo.

@@ -1,4 +1,4 @@
-# Drop Seven - Android Game
+# DropCount - Android Game
 
 A recreation of the classic Drop7 puzzle game for Android, built with Kotlin and Jetpack Compose.
 
@@ -33,11 +33,12 @@ A recreation of the classic Drop7 puzzle game for Android, built with Kotlin and
    - Predictable sequences for strategic planning
 
 ### 🏆 Features
-- **High Score Tracking**: Per-mode high score persistence using DataStore
-- **Haptic Feedback**: Vibration feedback for drops, breaks, and chains
-- **Sound Support**: Infrastructure ready for sound effects (add audio files to `res/raw/`)
-- **Beautiful UI**: Modern Material 3 design with gradient backgrounds
-- **Animations**: Smooth disc drops and break effects
+- **Visual Themes**: Choose from Classic, Neon, Woodblock, and Foundry themes
+- **High Score & Stats**: Track per-mode high scores and detailed lifetime statistics
+- **Undo Support**: Mistake? Undo the last 5 moves
+- **Animations**: Smooth disc drops and break effects with adjustable speed
+- **Tutorial**: Interactive "How to Play" orientation for new players
+- **Beautiful UI**: Modern Material 3 design with theme-specific aesthetics
 - **Pause/Resume**: Pause the game anytime
 
 ## How to Play
@@ -61,40 +62,20 @@ A recreation of the classic Drop7 puzzle game for Android, built with Kotlin and
 ### Key Components
 
 ```
-app/src/main/java/io/github/jdanders/dropseven/
-├── model/              # Data models
-│   ├── GameState.kt    # Game state management
-│   ├── Disc.kt         # Disc types (Numbered, Solid)
-│   ├── Cell.kt         # Grid cell representation
-│   └── GameMode.kt     # Game mode configurations
-│
-├── engine/             # Game logic
-│   ├── GameEngine.kt   # Core game mechanics
-│   └── DiscGenerator.kt # Mode-based disc generation
-│
-├── viewmodel/          # ViewModels
-│   └── GameViewModel.kt
-│
-├── ui/                 # Compose UI
-│   ├── GameScreen.kt   # Main game interface
-│   ├── MenuScreen.kt   # Mode selection menu
-│   ├── ChallengeModeConfigScreen.kt
-│   ├── components/     # Reusable components
-│   │   ├── GameGrid.kt
-│   │   └── NextDiscPreview.kt
-│   ├── animations/     # Animation utilities
-│   │   ├── DiscAnimations.kt
-│   │   └── ParticleEffect.kt
-│   ├── haptics/        # Haptic feedback
-│   │   └── HapticsManager.kt
-│   └── theme/          # Material theme
-│
-├── data/               # Data persistence
-│   ├── PreferencesManager.kt
-│   └── ScoreRepository.kt
-│
-└── sound/              # Audio (ready for integration)
-    └── SoundManager.kt
+app/src/main/java/io/github/jdanders/dropcount/
+├── model/              # Data models (Disc, Grid, GameState)
+├── engine/             # Game logic (GameEngine, DiscGenerator)
+├── viewmodel/          # ViewModels (GameViewModel)
+├── data/               # Data persistence (DataStore, Repositories)
+├── config/             # Game and Animation configurations
+├── util/               # Logging and utility functions
+└── ui/                 # Compose UI
+    ├── theme/          # Theme definitions and Renderers
+    ├── components/     # Reusable UI elements (GameGrid, Stats)
+    ├── GameScreen.kt   # Main game interface
+    ├── MenuScreen.kt   # Mode selection menu
+    ├── SettingsDialog.kt # Theme and speed settings
+    └── HowToPlayScreen.kt # Tutorial content
 ```
 
 ## Building and Running
@@ -130,9 +111,9 @@ open app/build/reports/jacoco/jacocoTestReport/html/index.html
 ```
 
 ### Test Coverage
-- **Game Engine**: 95% instruction coverage, 87% branch coverage
-- **Game Models**: 81% instruction coverage, 72% branch coverage
-- **111 total unit tests** covering:
+- **Game Engine**: 85.6% instruction coverage, 77.4% branch coverage
+- **Game Models**: 70.4% instruction coverage, 69.1% branch coverage
+- **137 total unit tests** covering:
   - Core game mechanics
   - Chain reaction logic
   - Contiguous counting rules
@@ -140,32 +121,6 @@ open app/build/reports/jacoco/jacocoTestReport/html/index.html
   - New row generation
   - Game mode configurations
   - Regression tests for all fixed bugs
-
-## Adding Sound Effects
-
-To add sound effects:
-
-1. Create `app/src/main/res/raw/` directory
-2. Add audio files (`.ogg` or `.mp3` format):
-   - `drop_sound.ogg` - Disc drop sound
-   - `break_sound.ogg` - Disc break sound
-   - `chain_sound.ogg` - Chain reaction sound
-   - `level_up_sound.ogg` - Level up sound
-   - `game_over_sound.ogg` - Game over sound
-3. Uncomment the load statements in `SoundManager.kt`
-4. Integrate with `GameViewModel` to trigger sounds
-
-## Future Enhancements
-
-- [ ] Add background music
-- [ ] Implement settings screen for sound/haptics toggles
-- [ ] Add tutorial/help overlay
-- [ ] Create custom animations for chain reactions
-- [ ] Add statistics tracking (games played, average score, etc.)
-- [ ] Implement daily challenges
-- [ ] Add color themes
-- [ ] Create widget for quick play
-- [ ] Add achievements system
 
 ## Game Rules
 
@@ -192,9 +147,12 @@ To add sound effects:
 
 ## License
 
-This is a personal recreation project for learning purposes.
+This project is licensed under the GPL v3 License - see the [LICENSE](LICENSE) file for details.
+
+## Privacy Policy
+
+We value your privacy. This app does not collect any personal data. See our [Privacy Policy](PRIVACY_POLICY.md) for details.
 
 ## Credits
 
 Inspired by the original Drop7 game by Area/Code Entertainment (acquired by Zynga).
-

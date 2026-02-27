@@ -1,0 +1,11 @@
+Initial release of DropCount!<br>
+<br>
+<ul>
+<li>Faithful recreation of the classic Drop7 puzzle game</li>
+<li>Three game modes: Normal, Challenge, and Sequence</li>
+<li>Chain reaction mechanics with numbered and solid discs</li>
+<li>High score tracking across all game modes</li>
+<li>Haptic feedback and smooth animations</li>
+<li>Modern Material 3 design</li>
+<li>Completely free and open source</li>
+</ul>

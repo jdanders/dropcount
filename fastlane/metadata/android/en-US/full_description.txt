@@ -1,0 +1,46 @@
+DropCount is a faithful recreation of the classic Drop7 puzzle game for Android, built with Kotlin and Jetpack Compose.<br>
+<br>
+<b>Core Gameplay</b><br>
+<ul>
+<li>7×7 Grid: Classic Drop7 gameplay with numbered and solid discs</li>
+<li>Matches: Destroy discs by creating lengths of discs matching the disc numbers</li>
+<li>Chain Reactions: Create cascading combos for higher scores</li>
+<li>Dynamic Difficulty: New rows appear from the bottom based on game mode</li>
+</ul>
+<br>
+<b>Game Modes</b><br>
+<br>
+1. Normal Mode<br>
+<ul>
+<li>New row every 30 drops, then 29, 28, 27... (decreasing)</li>
+</ul>
+<br>
+2. Challenge Mode<br>
+<ul>
+<li>Configurable difficulty presets: Easy, Medium, Hard, Extreme</li>
+<li>Fixed drop rate for fixed challenge</li>
+</ul>
+<br>
+3. Sequence Mode<br>
+<ul>
+<li>Same rules as Normal mode</li>
+<li>Deterministic disc generation for puzzle-solving</li>
+<li>Predictable sequences for strategic planning</li>
+</ul>
+<br>
+<b>Features</b><br>
+<ul>
+<li>High Score Tracking: Per-mode high score persistence</li>
+<li>Beautiful UI: Modern Material 3 design with gradient backgrounds</li>
+<li>Animations: Smooth disc drops and break effects</li>
+<li>Pause/Resume: Pause the game anytime</li>
+</ul>
+<br>
+<b>How to Play</b><br>
+1. Tap a column to drop the current disc<br>
+2. Match numbers: A disc breaks when contiguous discs in its row OR column equal its number<br>
+3. Chain reactions: Breaking discs can trigger more breaks for bonus points<br>
+4. Solid discs: Appear solid gray, crack once after first adjacent break, reveal a number after second adjacent break<br>
+5. Survive: Avoid filling the past the top row<br>
+<br>
+DropCount is completely free and open source, with no ads or in-app purchases.

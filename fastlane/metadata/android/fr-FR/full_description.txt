@@ -1,0 +1,46 @@
+DropCount est une recréation fidèle du jeu de puzzle classique Drop7 pour Android, conçu avec Kotlin et Jetpack Compose.<br>
+<br>
+<b>Gameplay de base</b><br>
+<ul>
+<li>Grille 7×7 : Gameplay classique de Drop7 avec des disques numérotés et solides</li>
+<li>Correspondances : Détruisez les disques en créant des séries de disques correspondant aux numéros des disques</li>
+<li>Réactions en chaîne : Créez des combos en cascade pour obtenir des scores plus élevés</li>
+<li>Difficulté dynamique : De nouvelles rangées apparaissent par le bas selon le mode de jeu</li>
+</ul>
+<br>
+<b>Modes de jeu</b><br>
+<br>
+1. Mode Normal<br>
+<ul>
+<li>Nouvelle rangée tous les 30 lancers, puis 29, 28, 27... (décroissant)</li>
+</ul>
+<br>
+2. Mode Défi<br>
+<ul>
+<li>Préréglages de difficulté configurables : Facile, Moyen, Difficile, Extrême</li>
+<li>Cadence de lancer fixe pour un défi constant</li>
+</ul>
+<br>
+3. Mode Séquence<br>
+<ul>
+<li>Mêmes règles que le mode Normal</li>
+<li>Génération déterministe de disques pour la résolution de puzzles</li>
+<li>Séquences prévisibles pour une planification stratégique</li>
+</ul>
+<br>
+<b>Fonctionnalités</b><br>
+<ul>
+<li>Suivi des meilleurs scores : Persistance des scores par mode</li>
+<li>Interface magnifique : Design moderne Material 3 avec arrière-plans dégradés</li>
+<li>Animations : Chutes de disques fluides et effets de cassure</li>
+<li>Pause/Reprise : Mettez le jeu en pause à tout moment</li>
+</ul>
+<br>
+<b>Comment jouer</b><br>
+1. Appuyez sur une colonne pour lancer le disque actuel<br>
+2. Faire correspondre les nombres : Un disque se brise lorsque les disques contigus dans sa rangée OU sa colonne sont égaux à son nombre<br>
+3. Réactions en chaîne : Briser des disques peut déclencher d'autres cassures pour des points bonus<br>
+4. Discos solides : Apparaissent gris plein, se fissurent une fois après le premier bris adjacent, révèlent un nombre après le deuxième bris adjacent<br>
+5. Survivre : Évitez de dépasser la rangée supérieure de la grille<br>
+<br>
+DropCount est entièrement gratuit et open source, sans publicité ni achats intégrés.

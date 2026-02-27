@@ -60,3 +60,7 @@ Thumbs.db
 # Test coverage reports
 *.exec
 jacoco.exec
+
+# Signing configuration
+app/release.keystore
+app/signing.properties

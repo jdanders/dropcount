@@ -1,0 +1,1 @@
+Uma recriação do clássico jogo de puzzle Drop7 para Android

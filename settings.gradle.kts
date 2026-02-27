@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "DropSeven"
+rootProject.name = "DropCount"
 include(":app")

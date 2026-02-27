@@ -1,0 +1,105 @@
+<resources>
+    <string name="app_name">DropCount</string>
+
+    <!-- General Actions -->
+    <string name="action_undo">DESHACER</string>
+    <string name="action_restart">REINICIAR</string>
+    <string name="action_menu">MENÚ</string>
+    <string name="action_resume">REANUDAR</string>
+    <string name="action_cancel">CANCELAR</string>
+    <string name="action_play_again">JUGAR DE NUEVO</string>
+    <string name="action_back">VOLVER</string>
+    <string name="action_stats">ESTADÍSTICAS</string>
+    <string name="action_settings">AJUSTES</string>
+    <string name="action_how_to_play">CÓMO JUGAR</string>
+
+    <!-- Menu Screen -->
+    <string name="menu_title">DROPCOUNT</string>
+    <string name="menu_subtitle">// SISTEMA DE PUZZLE DE PRECISIÓN v2.1</string>
+    <string name="menu_resume_game">REANUDAR JUEGO</string>
+    <string name="menu_resume_desc">Continuar sesión anterior</string>
+    <string name="menu_normal_mode">Modo Normal</string>
+    <string name="menu_normal_desc">Juego estándar con discos misteriosos y velocidad creciente</string>
+    <string name="menu_normal_desc_classic">Discos misteriosos y filas que caen más rápido</string>
+    <string name="menu_normal_desc_neon">¡Caos neón! ¡Bloques misteriosos y ciclos de filas más rápidos!</string>
+    <string name="menu_normal_desc_foundry">UNIDADES HÍBRIDAS // ACELERACIÓN INCREMENTAL DE FILAS</string>
+    <string name="menu_normal_desc_woodblock">Discos misteriosos y el flujo acelerado de nuevas filas</string>
+
+    <string name="menu_challenge_mode">Modo Desafío</string>
+    <string name="menu_challenge_desc">Solo discos numerados—ritmo constante sin bloques sólidos</string>
+    <string name="menu_challenge_desc_classic">Solo discos numerados. Ritmo fijo.</string>
+    <string name="menu_challenge_desc_neon">Números puros. Modo difícil. ¡Concéntrate!</string>
+    <string name="menu_challenge_desc_foundry">SOLO UNIDADES NUMERADAS // CADENCIA FIJA</string>
+    <string name="menu_challenge_desc_woodblock">Símbolos puros en equilibrio atemporal</string>
+
+    <string name="menu_sequence_mode">Modo Secuencia</string>
+    <string name="menu_sequence_desc">Perfecciona tu estrategia con un patrón fijo y repetible</string>
+    <string name="menu_sequence_desc_classic">Patrón fijo y repetible.</string>
+    <string name="menu_sequence_desc_neon">¡Flujo de datos! ¡Domina el código específico!</string>
+    <string name="menu_sequence_desc_foundry">FLUJO DETERMINISTA // PROTOCOLO REPETIBLE</string>
+    <string name="menu_sequence_desc_woodblock">Un camino familiar en estaciones cambiantes</string>
+
+    <!-- Game Screen -->
+    <string name="label_score">PUNTUACIÓN</string>
+    <string name="label_high_score">RÉCORD</string>
+    <string name="label_level">NIVEL</string>
+    <string name="label_chain">¡CADENA x%1$d!</string>
+    <string name="label_chain_header">CADENA</string>
+    <string name="label_drop_header">LANZAMIENTO</string>
+    <string name="game_over">JUEGO TERMINADO</string>
+    <string name="final_score">Puntuación Final</string>
+    <string name="paused">PAUSADO</string>
+
+    <!-- Dialogs -->
+    <string name="restart_title">¿Reiniciar juego?</string>
+    <string name="restart_message">¿Estás seguro de que quieres reiniciar? Tu progreso actual se perderá.</string>
+
+    <!-- Statistics -->
+    <string name="stats_title">ESTADÍSTICAS</string>
+    <string name="stats_total_games">Total de Partidas Jugadas</string>
+    <string name="stats_high_score">Puntuación Más Alta</string>
+    <string name="stats_highest_level">Nivel Más Alto</string>
+    <string name="stats_longest_chain">Cadena Más Larga</string>
+    <string name="stats_best_move">Mejor Movimiento Único</string>
+    <string name="stats_total_drops">Total de Discos Soltados</string>
+    <string name="stats_all_time">Estadísticas Históricas</string>
+    <string name="stats_no_data">Sin datos aún</string>
+    <string name="label_best">Mejor</string>
+    <string name="label_avg">Prom.</string>
+
+    <!-- Settings -->
+    <string name="settings_title">AJUSTES</string>
+    <string name="settings_animation_speed">Velocidad de Animación</string>
+    <string name="settings_visual_theme">Tema Visual</string>
+    <string name="speed_slow">Lento</string>
+    <string name="speed_medium">Medio</string>
+    <string name="speed_fast">Rápido</string>
+    <string name="theme_classic">Clásico</string>
+    <string name="theme_neon">Neón</string>
+    <string name="theme_foundry">Fundición</string>
+    <string name="theme_woodblock">Xilografía</string>
+
+    <!-- Challenge Config -->
+    <string name="challenge_config_title">CONFIG. DE DESAFÍO</string>
+    <string name="difficulty_easy">Fácil</string>
+    <string name="difficulty_medium">Medio</string>
+    <string name="difficulty_hard">Difícil</string>
+    <string name="difficulty_extreme">Extremo</string>
+    <string name="drops_per_row">%1$d lanzamientos por fila</string>
+    <string name="start_challenge">INICIAR DESAFÍO</string>
+
+    <!-- How to Play -->
+    <string name="how_to_play_title">Cómo Jugar</string>
+    <string name="tutorial_step_1">Suelta discos en la cuadrícula de 7x7.</string>
+    <string name="tutorial_step_2">Los discos se rompen cuando el número de discos contiguos en su fila o columna coincide con su valor.</string>
+    <string name="tutorial_step_3">Los discos sólidos grises deben agrietarse dos veces por roturas adyacentes para revelar su número.</string>
+    <string name="tutorial_step_4">Se añade una nueva fila desde abajo después de un cierto número de lanzamientos.</string>
+    <string name="tutorial_step_5">¡No dejes que los discos se salgan de la cuadrícula!</string>
+    <string name="tutorial_got_it">¡ENTENDIDO!</string>
+
+    <!-- Accessibility -->
+    <string name="acc_grid_description">Cuadrícula de juego, nivel %1$d, puntuación %2$d. El tablero contiene %3$d discos.</string>
+    <string name="acc_preview_disc">El siguiente disco a soltar es %1$s.</string>
+    <string name="acc_disc_numbered">numerado %1$d</string>
+    <string name="acc_disc_solid">disco sólido</string>
+</resources>

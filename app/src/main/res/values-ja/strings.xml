@@ -1,0 +1,125 @@
+<resources>
+    <string name="app_name">DropCount</string>
+
+    <!-- General Actions -->
+    <string name="action_undo">元に戻す</string>
+    <string name="action_restart">再起動</string>
+    <string name="action_menu">メニュー</string>
+    <string name="action_resume">再開</string>
+    <string name="action_cancel">キャンセル</string>
+    <string name="action_play_again">もう一度遊ぶ</string>
+    <string name="action_back">戻る</string>
+    <string name="action_stats">統計</string>
+    <string name="action_settings">設定</string>
+    <string name="action_how_to_play">遊び方</string>
+    <string name="action_close">閉じる</string>
+
+    <!-- Menu Screen -->
+    <string name="menu_title">DROPCOUNT</string>
+    <string name="menu_subtitle">// 高精度パズルシステム v2.1</string>
+    <string name="menu_resume_game">ゲームを再開</string>
+    <string name="menu_resume_desc">前回のセッションを続ける</string>
+    <string name="menu_normal_mode">ノーマルモード</string>
+    <string name="menu_normal_desc">ミステリーディスクと加速するスピードの標準モード</string>
+    <string name="menu_normal_desc_classic">ミステリーディスクと時間とともに加速する新しい行</string>
+    <string name="menu_normal_desc_neon">ネオンのカオス！ミステリーブロックと加速する行サイクル！</string>
+    <string name="menu_normal_desc_foundry">ハイブリッドユニット // 段階的な行加速プロトコル</string>
+    <string name="menu_normal_desc_woodblock">ミステリーディスクと加速する新しい行の流れ</string>
+
+    <string name="menu_challenge_mode">チャレンジモード</string>
+    <string name="menu_challenge_desc">数字ディスクのみ—ソリッドブロックなしの一定ペース</string>
+    <string name="menu_challenge_desc_classic">数字ディスクのみ。一定のペース。</string>
+    <string name="menu_challenge_desc_neon">純粋な数字。ハードモード。集中せよ！</string>
+    <string name="menu_challenge_desc_foundry">数字ユニット限定 // 固定動作周期</string>
+    <string name="menu_challenge_desc_woodblock">不変の均衡の中の純粋な象徴</string>
+
+    <string name="menu_sequence_mode">シーケンスモード</string>
+    <string name="menu_sequence_desc">固定された繰り返しパターンで戦略を磨く</string>
+    <string name="menu_sequence_desc_classic">固定された繰り返しのパターン。</string>
+    <string name="menu_sequence_desc_neon">データストリーム！特定のコードをマスターせよ！</string>
+    <string name="menu_sequence_desc_foundry">決定論的ストリーム // 反復可能プロトコル</string>
+    <string name="menu_sequence_desc_woodblock">移ろいゆく季節の中の慣れ親しんだ道</string>
+
+    <!-- Game Screen -->
+    <string name="label_score">スコア</string>
+    <string name="label_high_score">ハイスコア</string>
+    <string name="label_level">レベル</string>
+    <string name="label_chain">連鎖 x%1$d!</string>
+    <string name="label_chain_header">連鎖</string>
+    <string name="label_drop_header">ドロップ</string>
+    <string name="game_over">ゲームオーバー</string>
+    <string name="final_score">最終スコア</string>
+    <string name="paused">一時停止</string>
+
+    <!-- Dialogs -->
+    <string name="restart_title">ゲームを再起動しますか？</string>
+    <string name="restart_message">本当に再起動しますか？現在の進行状況は失われます。</string>
+
+    <!-- Statistics -->
+    <string name="stats_title">統計</string>
+    <string name="stats_total_games">総プレイ回数</string>
+    <string name="stats_high_score">最高スコア</string>
+    <string name="stats_highest_level">最高レベル</string>
+    <string name="stats_longest_chain">最大連鎖数</string>
+    <string name="stats_best_move">一手の最高得点</string>
+    <string name="stats_total_drops">総ドロップ数</string>
+    <string name="stats_all_time">通算統計</string>
+    <string name="stats_no_data">データがまだありません</string>
+    <string name="label_best">ベスト</string>
+    <string name="label_avg">平均</string>
+    <string name="stats_subtitle">すべてのモードで進捗を追跡</string>
+    <string name="stats_games_played_label">プレイ回数</string>
+    <string name="stats_compare_modes">全モード比較</string>
+    <string name="stats_table_mode">モード</string>
+    <string name="stats_no_games_mode">%1$s モードのプレイデータがまだありません</string>
+    <string name="stats_start_playing_desc">ゲームをプレイして統計を確認しましょう！</string>
+
+    <!-- Settings -->
+    <string name="settings_title">設定</string>
+    <string name="settings_animation_speed">アニメーション速度</string>
+    <string name="settings_visual_theme">ビジュアルテーマ</string>
+    <string name="speed_slow">遅い</string>
+    <string name="speed_medium">普通</string>
+    <string name="speed_fast">速い</string>
+    <string name="theme_classic">クラシック</string>
+    <string name="theme_neon">ネオン</string>
+    <string name="theme_foundry">ファウンドリ</string>
+    <string name="theme_woodblock">木版画</string>
+    <string name="theme_classic_desc">シンプルでクリーンな色調</string>
+    <string name="theme_neon_desc">ネオンアーケードの美学</string>
+    <string name="theme_foundry_desc">インダストリアルなコンクリートの正方形</string>
+    <string name="theme_woodblock_desc">日本の伝統的な版画にインスパイアされた芸術性</string>
+
+    <!-- Challenge Config -->
+    <string name="challenge_config_title">チャレンジ設定</string>
+    <string name="label_select_difficulty">難易度を選択</string>
+    <string name="difficulty_easy">初級</string>
+    <string name="difficulty_medium">中級</string>
+    <string name="difficulty_hard">上級</string>
+    <string name="difficulty_extreme">超上級</string>
+    <string name="drops_per_row">%1$d ドロップごとに新行</string>
+    <string name="start_challenge">チャレンジ開始</string>
+
+    <!-- How to Play -->
+    <string name="how_to_play_title">遊び方</string>
+    <string name="tutorial_step_1">7x7のグリッドにディスクを落とします。</string>
+    <string name="tutorial_step_2">縦または横に並んだディスクの数が、ディスクに書かれた数字と一致するとディスクが割れます。</string>
+    <string name="tutorial_step_3">グレーの無地ディスクは、隣でディスクが割れるとヒビが入ります。2回ヒビが入ると数字が現れます。</string>
+    <string name="tutorial_step_4">一定回数ドロップすると、下から新しい行がせり上がります。</string>
+    <string name="tutorial_step_5">ディスクがグリッドからはみ出さないように注意してください！</string>
+    <string name="tutorial_got_it">了解！</string>
+
+    <!-- Accessibility -->
+    <string name="acc_grid_description">ゲームグリッド、レベル %1$d、スコア %2$d。盤面には %3$d 個のディスクがあります。</string>
+    <string name="acc_preview_disc">次に落とすディスクは %1$s です。</string>
+    <string name="acc_disc_numbered">%1$d 番のディスク</string>
+    <string name="acc_disc_solid">無地ディスク</string>
+
+    <!-- Final strings -->
+    <string name="tutorial_chain_reactions_title">連鎖反応</string>
+    <string name="tutorial_chain_reactions_desc">ディスクを壊すと連鎖反応が起こることがあります。長い連鎖を築いて莫大なボーナス倍率を獲得しましょう！</string>
+    <string name="tutorial_new_row_title">新しい行</string>
+    <string name="speed_multiplier_format">%1.1fx スピード</string>
+    <string name="level_bonus_format">レベルボーナス +%1$d</string>
+    <string name="foundry_branding">EST. 2025 // 産業オペレーション</string>
+</resources>

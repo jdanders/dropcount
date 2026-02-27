@@ -1,0 +1,46 @@
+DropCount ist eine originalgetreue Nachbildung des klassischen Drop7-Puzzlespiels für Android, entwickelt mit Kotlin und Jetpack Compose.<br>
+<br>
+<b>Kern-Gameplay</b><br>
+<ul>
+<li>7×7 Raster: Klassisches Drop7-Gameplay mit nummerierten und soliden Scheiben</li>
+<li>Treffer: Zerstöre Scheiben, indem du Reihen von Scheiben bildest, die den Scheibennummern entsprechen</li>
+<li>Kettenreaktionen: Erstelle kaskadierende Kombos für höhere Punktzahlen</li>
+<li>Dynamische Schwierigkeit: Neue Reihen erscheinen von unten, abhängig vom Spielmodus</li>
+</ul>
+<br>
+<b>Spielmodi</b><br>
+<br>
+1. Normaler Modus<br>
+<ul>
+<li>Neue Reihe alle 30 Würfe, dann 29, 28, 27... (abnehmend)</li>
+</ul>
+<br>
+2. Herausforderungsmodus<br>
+<ul>
+<li>Konfigurierbare Schwierigkeitsstufen: Einfach, Mittel, Schwer, Extrem</li>
+<li>Feste Wurfrate für eine gleichbleibende Herausforderung</li>
+</ul>
+<br>
+3. Sequenzmodus<br>
+<ul>
+<li>Gleiche Regeln wie im normalen Modus</li>
+<li>Deterministische Scheibengenerierung für Rätsellöser</li>
+<li>Vorhersehbare Sequenzen für strategische Planung</li>
+</ul>
+<br>
+<b>Features</b><br>
+<ul>
+<li>Highscore-Tracking: Speicherung der Bestleistung pro Modus</li>
+<li>Schönes UI: Modernes Material 3 Design mit Farbverläufen</li>
+<li>Animationen: Flüssiges Fallen der Scheiben und Brucheffekte</li>
+<li>Pause/Fortsetzen: Das Spiel jederzeit anhalten</li>
+</ul>
+<br>
+<b>Spielanleitung</b><br>
+1. Tippe auf eine Spalte, um die aktuelle Scheibe fallen zu lassen<br>
+2. Zahlen abgleichen: Eine Scheibe bricht, wenn zusammenhängende Scheiben in ihrer Reihe ODER Spalte ihrer Zahl entsprechen<br>
+3. Kettenreaktionen: Das Brechen von Scheiben kann weitere Brüche für Bonuspunkte auslösen<br>
+4. Solide Scheiben: Erscheinen grau-solide, reißen nach dem ersten benachbarten Bruch einmal ein und enthüllen nach dem zweiten benachbarten Bruch eine Zahl<br>
+5. Überleben: Vermeide es, das Raster über die oberste Reihe hinaus zu füllen<br>
+<br>
+DropCount ist völlig kostenlos und quelloffen, ohne Werbung oder In-App-Käufe.

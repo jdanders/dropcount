@@ -1,0 +1,125 @@
+<resources>
+    <string name="app_name">DropCount</string>
+
+    <!-- General Actions -->
+    <string name="action_undo">RÜCKGÄNGIG</string>
+    <string name="action_restart">NEUSTART</string>
+    <string name="action_menu">MENÜ</string>
+    <string name="action_resume">WEITER</string>
+    <string name="action_cancel">ABBRECHEN</string>
+    <string name="action_play_again">NOCHMAL SPIELEN</string>
+    <string name="action_back">ZURÜCK</string>
+    <string name="action_stats">STATISTIKEN</string>
+    <string name="action_settings">EINSTELLUNGEN</string>
+    <string name="action_how_to_play">SPIELANLEITUNG</string>
+    <string name="action_close">SCHLIESSEN</string>
+
+    <!-- Menu Screen -->
+    <string name="menu_title">DROPCOUNT</string>
+    <string name="menu_subtitle">// PRÄZISIONS-PUZZLE-SYSTEM v2.1</string>
+    <string name="menu_resume_game">SPIEL FORTSETZEN</string>
+    <string name="menu_resume_desc">Vorherige Sitzung fortsetzen</string>
+    <string name="menu_normal_mode">Normaler Modus</string>
+    <string name="menu_normal_desc">Standardspiel mit mysteriösen Scheiben und steigender Geschwindigkeit</string>
+    <string name="menu_normal_desc_classic">Mystery-Scheiben und Reihen, die mit der Zeit schneller fallen</string>
+    <string name="menu_normal_desc_neon">Neon-Chaos! Mystery-Blöcke und schnellere Reihen-Zyklen!</string>
+    <string name="menu_normal_desc_foundry">HYBRID-EINHEITEN // INKREMENTELLE REIHEN-BESCHLEUNIGUNG</string>
+    <string name="menu_normal_desc_woodblock">Mystery-Scheiben und der beschleunigte Fluss neuer Reihen</string>
+
+    <string name="menu_challenge_mode">Herausforderungsmodus</string>
+    <string name="menu_challenge_desc">Nur nummerierte Scheiben—gleichmäßiges Tempo ohne solide Blöcke</string>
+    <string name="menu_challenge_desc_classic">Nur nummerierte Scheiben. Festes Tempo.</string>
+    <string name="menu_challenge_desc_neon">Reine Zahlen. Hard-Mode. Bleib fokussiert!</string>
+    <string name="menu_challenge_desc_foundry">NUR NUMMERIERTE EINHEITEN // FIXER CADANCE</string>
+    <string name="menu_challenge_desc_woodblock">Reine Symbole in zeitlosem Gleichgewicht</string>
+
+    <string name="menu_sequence_mode">Sequenzmodus</string>
+    <string name="menu_sequence_desc">Perfektionieren Sie Ihre Strategie mit einem festen, wiederholbaren Muster</string>
+    <string name="menu_sequence_desc_classic">Festes, wiederholbares Muster.</string>
+    <string name="menu_sequence_desc_neon">Datenstrom! Meistere den spezifischen Code!</string>
+    <string name="menu_sequence_desc_foundry">DETERMINISTISCHER STROM // REPRODUZIERBARER PROTOKOLL</string>
+    <string name="menu_sequence_desc_woodblock">Ein vertrauter Pfad durch den Wandel der Zeiten</string>
+
+    <!-- Game Screen -->
+    <string name="label_score">PUNKTE</string>
+    <string name="label_high_score">BESTLEISTUNG</string>
+    <string name="label_level">LEVEL</string>
+    <string name="label_chain">KETTE x%1$d!</string>
+    <string name="label_chain_header">KETTE</string>
+    <string name="label_drop_header">WURF</string>
+    <string name="game_over">SPIEL VORBEI</string>
+    <string name="final_score">Endstand</string>
+    <string name="paused">PAUSE</string>
+
+    <!-- Dialogs -->
+    <string name="restart_title">Spiel neustarten?</string>
+    <string name="restart_message">Bist du sicher, dass du neu starten möchtest? Dein aktueller Fortschritt geht verloren.</string>
+
+    <!-- Statistics -->
+    <string name="stats_title">STATISTIKEN</string>
+    <string name="stats_total_games">Gespielte Spiele insgesamt</string>
+    <string name="stats_high_score">Höchste Punktzahl</string>
+    <string name="stats_highest_level">Höchstes Level</string>
+    <string name="stats_longest_chain">Längste Kette</string>
+    <string name="stats_best_move">Bester einzelner Zug</string>
+    <string name="stats_total_drops">Geworfene Scheiben insgesamt</string>
+    <string name="stats_all_time">Gesamtstatistik</string>
+    <string name="stats_no_data">Noch keine Daten</string>
+    <string name="label_best">Bester</string>
+    <string name="label_avg">Durchschn.</string>
+    <string name="stats_subtitle">Verfolgen Sie Ihren Fortschritt in allen Modi</string>
+    <string name="stats_games_played_label">GESPIELTE SPIELE</string>
+    <string name="stats_compare_modes">Alle Modi vergleichen</string>
+    <string name="stats_table_mode">Modus</string>
+    <string name="stats_no_games_mode">Noch keine Spiele im %1$s Modus</string>
+    <string name="stats_start_playing_desc">Fange an zu spielen, um deine Statistiken zu sehen!</string>
+
+    <!-- Settings -->
+    <string name="settings_title">EINSTELLUNGEN</string>
+    <string name="settings_animation_speed">Animationsgeschwindigkeit</string>
+    <string name="settings_visual_theme">Visuelles Design</string>
+    <string name="speed_slow">Langsam</string>
+    <string name="speed_medium">Mittel</string>
+    <string name="speed_fast">Schnell</string>
+    <string name="theme_classic">Klassisch</string>
+    <string name="theme_neon">Neon</string>
+    <string name="theme_foundry">Gießerei</string>
+    <string name="theme_woodblock">Holzschnitt</string>
+    <string name="theme_classic_desc">Einfache, klare Farben</string>
+    <string name="theme_neon_desc">Neon-Arcade-Ästhetik</string>
+    <string name="theme_foundry_desc">Industrielle Betonquadrate</string>
+    <string name="theme_woodblock_desc">Von japanischen Holzschnitten inspirierte Kunstfertigkeit</string>
+
+    <!-- Challenge Config -->
+    <string name="challenge_config_title">CHALLENGE-KONFIG.</string>
+    <string name="label_select_difficulty">SCHWIERIGKEIT WÄHLEN</string>
+    <string name="difficulty_easy">Einfach</string>
+    <string name="difficulty_medium">Mittel</string>
+    <string name="difficulty_hard">Schwer</string>
+    <string name="difficulty_extreme">Extrem</string>
+    <string name="drops_per_row">%1$d Würfe pro Reihe</string>
+    <string name="start_challenge">CHALLENGE STARTEN</string>
+
+    <!-- How to Play -->
+    <string name="how_to_play_title">Spielanleitung</string>
+    <string name="tutorial_step_1">Wirf Scheiben in das 7x7 Gitter.</string>
+    <string name="tutorial_step_2">Scheiben brechen, wenn die Anzahl der zusammenhängenden Scheiben in ihrer Reihe oder Spalte ihrem Wert entspricht.</string>
+    <string name="tutorial_step_3">Graue solide Scheiben müssen durch benachbarte Brüche zweimal gespalten werden, um ihre Zahl zu enthüllen.</string>
+    <string name="tutorial_step_4">Nach einer bestimmten Anzahl von Würfen wird von unten eine neue Reihe hinzugefügt.</string>
+    <string name="tutorial_step_5">Lass die Scheiben nicht über das Gitter hinauswachsen!</string>
+    <string name="tutorial_got_it">VERSTANDEN!</string>
+
+    <!-- Accessibility -->
+    <string name="acc_grid_description">Spielfeld, Level %1$d, Punkte %2$d. Feld enthält %3$d Scheiben.</string>
+    <string name="acc_preview_disc">Nächste Scheibe ist %1$s.</string>
+    <string name="acc_disc_numbered">Nummer %1$d</string>
+    <string name="acc_disc_solid">solide Scheibe</string>
+
+    <!-- Final strings -->
+    <string name="tutorial_chain_reactions_title">Kettenreaktionen</string>
+    <string name="tutorial_chain_reactions_desc">Das Zerbrechen von Scheiben kann Folgereaktionen auslösen. Verdiene massive Bonusmultiplikatoren durch lange Ketten!</string>
+    <string name="tutorial_new_row_title">Die neue Reihe</string>
+    <string name="speed_multiplier_format">%1.1fx Geschwindigkeit</string>
+    <string name="level_bonus_format">Level-Bonus +%1$d</string>
+    <string name="foundry_branding">EST. 2025 // INDUSTRIELLER BETRIEB</string>
+</resources>

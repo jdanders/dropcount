@@ -1,0 +1,125 @@
+<resources>
+    <string name="app_name">DropCount</string>
+
+    <!-- General Actions -->
+    <string name="action_undo">DESFAZER</string>
+    <string name="action_restart">REINICIAR</string>
+    <string name="action_menu">MENU</string>
+    <string name="action_resume">CONTINUAR</string>
+    <string name="action_cancel">CANCELAR</string>
+    <string name="action_play_again">JOGAR NOVAMENTE</string>
+    <string name="action_back">VOLTAR</string>
+    <string name="action_stats">ESTATÍSTICAS</string>
+    <string name="action_settings">CONFIGURAÇÕES</string>
+    <string name="action_how_to_play">COMO JOGAR</string>
+    <string name="action_close">FECHAR</string>
+
+    <!-- Menu Screen -->
+    <string name="menu_title">DROPCOUNT</string>
+    <string name="menu_subtitle">// SISTEMA DE PUZZLE DE PRECISÃO v2.1</string>
+    <string name="menu_resume_game">RETOMAR JOGO</string>
+    <string name="menu_resume_desc">Continuar sessão anterior</string>
+    <string name="menu_normal_mode">Modo Normal</string>
+    <string name="menu_normal_desc">Jogo padrão com discos de mistério e velocidade crescente</string>
+    <string name="menu_normal_desc_classic">Discos misteriosos e linhas que caem mais rápido</string>
+    <string name="menu_normal_desc_neon">Caos neon! Blocos misteriosos e ciclos de linhas mais rápidos!</string>
+    <string name="menu_normal_desc_foundry">UNIDADES HÍBRIDAS // ACELERAÇÃO INCREMENTAL DE LINHAS</string>
+    <string name="menu_normal_desc_woodblock">Discos misteriosos e o fluxo acelerado de novas linhas</string>
+
+    <string name="menu_challenge_mode">Modo Desafio</string>
+    <string name="menu_challenge_desc">Apenas discos numerados—ritmo constante sem blocos sólidos</string>
+    <string name="menu_challenge_desc_classic">Apenas discos numerados. Ritmo fixo.</string>
+    <string name="menu_challenge_desc_neon">Números puros. Modo difícil. Mantenha o foco!</string>
+    <string name="menu_challenge_desc_foundry">APENAS UNIDADES NUMERADAS // CADÊNCIA FIXA</string>
+    <string name="menu_challenge_desc_woodblock">Símbolos puros em equilíbrio intemporal</string>
+
+    <string name="menu_sequence_mode">Modo Sequência</string>
+    <string name="menu_sequence_desc">Aperfeiçoe sua estratégia com um padrão fixo e repetível</string>
+    <string name="menu_sequence_desc_classic">Padrão fixo e repetível.</string>
+    <string name="menu_sequence_desc_neon">Fluxo de dados! Domine o código específico!</string>
+    <string name="menu_sequence_desc_foundry">FLUXO DETERMINÍSTICO // PROTOCOLO REPETÍVEL</string>
+    <string name="menu_sequence_desc_woodblock">Um caminho familiar através de estações variáveis</string>
+
+    <!-- Game Screen -->
+    <string name="label_score">PONTUAÇÃO</string>
+    <string name="label_high_score">RECORDE</string>
+    <string name="label_level">NÍVEL</string>
+    <string name="label_chain">COMBO x%1$d!</string>
+    <string name="label_chain_header">COMBO</string>
+    <string name="label_drop_header">LANÇAMENTO</string>
+    <string name="game_over">FIM DE JOGO</string>
+    <string name="final_score">Pontuação Final</string>
+    <string name="paused">PAUSADO</string>
+
+    <!-- Dialogs -->
+    <string name="restart_title">Reiniciar Jogo?</string>
+    <string name="restart_message">Tem certeza de que deseja reiniciar? Seu progresso atual será perdido.</string>
+
+    <!-- Statistics -->
+    <string name="stats_title">ESTATÍSTICAS</string>
+    <string name="stats_total_games">Total de Partidas Jogadas</string>
+    <string name="stats_high_score">Pontuação Mais Alta</string>
+    <string name="stats_highest_level">Nível Mais Alto</string>
+    <string name="stats_longest_chain">Maior Combo</string>
+    <string name="stats_best_move">Melhor Jogada Única</string>
+    <string name="stats_total_drops">Total de Discos Lançados</string>
+    <string name="stats_all_time">Estatísticas Gerais</string>
+    <string name="stats_no_data">Sem dados ainda</string>
+    <string name="label_best">Melhor</string>
+    <string name="label_avg">Média</string>
+    <string name="stats_subtitle">Acompanhe seu progresso em todos os modos</string>
+    <string name="stats_games_played_label">PARTIDAS JOGADAS</string>
+    <string name="stats_compare_modes">Comparar Todos os Modos</string>
+    <string name="stats_table_mode">Modo</string>
+    <string name="stats_no_games_mode">Nenhuma partida jogada ainda no modo %1$s</string>
+    <string name="stats_start_playing_desc">Comece a jogar para ver suas estatísticas!</string>
+
+    <!-- Settings -->
+    <string name="settings_title">CONFIGURAÇÕES</string>
+    <string name="settings_animation_speed">Velocidade de Animação</string>
+    <string name="settings_visual_theme">Tema Visual</string>
+    <string name="speed_slow">Lento</string>
+    <string name="speed_medium">Médio</string>
+    <string name="speed_fast">Rápido</string>
+    <string name="theme_classic">Clássico</string>
+    <string name="theme_neon">Neon</string>
+    <string name="theme_foundry">Fundição</string>
+    <string name="theme_woodblock">Xilogravura</string>
+    <string name="theme_classic_desc">Cores simples e limpas</string>
+    <string name="theme_neon_desc">Estética arcade neon</string>
+    <string name="theme_foundry_desc">Quadrados de concreto industrial</string>
+    <string name="theme_woodblock_desc">Arte inspirada em gravuras japonesas</string>
+
+    <!-- Challenge Config -->
+    <string name="challenge_config_title">CONFIG. DESAFIO</string>
+    <string name="label_select_difficulty">SELECIONAR DIFICULDADE</string>
+    <string name="difficulty_easy">Fácil</string>
+    <string name="difficulty_medium">Médio</string>
+    <string name="difficulty_hard">Difícil</string>
+    <string name="difficulty_extreme">Extremo</string>
+    <string name="drops_per_row">%1$d lançamentos por linha</string>
+    <string name="start_challenge">INICIAR DESAFIO</string>
+
+    <!-- How to Play -->
+    <string name="how_to_play_title">Como Jogar</string>
+    <string name="tutorial_step_1">Lance discos na grade 7x7.</string>
+    <string name="tutorial_step_2">Os discos quebram quando o número de discos contíguos em sua linha ou coluna corresponde ao seu valor.</string>
+    <string name="tutorial_step_3">Discos sólidos cinza devem ser rachados duas vezes por quebras adjacentes para revelar seu número.</string>
+    <string name="tutorial_step_4">Uma nova linha é adicionada por baixo após um certo número de lançamentos.</string>
+    <string name="tutorial_step_5">Não deixe os discos saírem da grade!</string>
+    <string name="tutorial_got_it">ENTENDI!</string>
+
+    <!-- Accessibility -->
+    <string name="acc_grid_description">Grade de jogo, nível %1$d, pontuação %2$d. O tabuleiro contém %3$d discos.</string>
+    <string name="acc_preview_disc">Próximo disco a lançar é %1$s.</string>
+    <string name="acc_disc_numbered">numerado %1$d</string>
+    <string name="acc_disc_solid">disco sólido</string>
+
+    <!-- Final strings -->
+    <string name="tutorial_chain_reactions_title">Reações em Cadeia</string>
+    <string name="tutorial_chain_reactions_desc">Quebrar discos pode causar quebras subsequentes. Ganhe multiplicadores de bônus massivos construindo cadeias longas!</string>
+    <string name="tutorial_new_row_title">A Nova Linha</string>
+    <string name="speed_multiplier_format">%1.1fx Velocidade</string>
+    <string name="level_bonus_format">Bônus de Nível +%1$d</string>
+    <string name="foundry_branding">EST. 2025 // OPERAÇÕES INDUSTRIAIS</string>
+</resources>

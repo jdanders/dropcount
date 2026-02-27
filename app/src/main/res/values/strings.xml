@@ -1,3 +1,129 @@
 <resources>
-    <string name="app_name">DropSeven</string>
+    <string name="app_name">DropCount</string>
+
+    <!-- General Actions -->
+    <string name="action_undo">UNDO</string>
+    <string name="action_restart">RESTART</string>
+    <string name="action_menu">MENU</string>
+    <string name="action_resume">RESUME</string>
+    <string name="action_cancel">CANCEL</string>
+    <string name="action_play_again">PLAY AGAIN</string>
+    <string name="action_back">BACK</string>
+    <string name="action_stats">STATISTICS</string>
+    <string name="action_settings">SETTINGS</string>
+    <string name="action_how_to_play">HOW TO PLAY</string>
+    <string name="action_close">CLOSE</string>
+
+
+    <!-- Menu Screen -->
+    <string name="menu_title">DROPCOUNT</string>
+    <string name="menu_subtitle">// PRECISION PUZZLE SYSTEM v2.1</string>
+    <string name="menu_resume_game">RESUME GAME</string>
+    <string name="menu_resume_desc">Continue previous session</string>
+    <string name="menu_normal_mode">Normal Mode</string>
+    <string name="menu_normal_desc">Standard game with mystery solid discs and increasing speed</string>
+    <string name="menu_normal_desc_classic">Mystery discs and rows that drop faster over time</string>
+    <string name="menu_normal_desc_neon">Neon chaos! Mystery blocks and faster row cycles!</string>
+    <string name="menu_normal_desc_foundry">HYBRID UNITS // INCREMENTAL ROW ACCELERATION</string>
+    <string name="menu_normal_desc_woodblock">Mystery discs and the quickening flow of new rows</string>
+
+    <string name="menu_challenge_mode">Challenge Mode</string>
+    <string name="menu_challenge_desc">Only numbered discs—steady pace with no solid blocks</string>
+    <string name="menu_challenge_desc_classic">Only numbered discs. Fixed pace.</string>
+    <string name="menu_challenge_desc_neon">Pure numbers. Hard mode. Stay focused!</string>
+    <string name="menu_challenge_desc_foundry">NUMBERED UNITS ONLY // FIXED OPS CADENCE</string>
+    <string name="menu_challenge_desc_woodblock">Pure symbols in steady, timeless balance</string>
+
+    <string name="menu_sequence_mode">Sequence Mode</string>
+    <string name="menu_sequence_desc">Perfect your strategy with a fixed, repeatable pattern</string>
+    <string name="menu_sequence_desc_classic">Fixed, repeatable pattern.</string>
+    <string name="menu_sequence_desc_neon">Data stream! Master the specific code!</string>
+    <string name="menu_sequence_desc_foundry">DETERMINISTIC STREAM // REPEATABLE PROTOCOL</string>
+    <string name="menu_sequence_desc_woodblock">A familiar path through shifting seasons</string>
+
+    <!-- Game Screen -->
+    <string name="label_score">SCORE</string>
+    <string name="label_high_score">HIGH SCORE</string>
+    <string name="label_level">LEVEL</string>
+    <string name="label_chain">CHAIN x%1$d!</string>
+    <string name="label_chain_header">CHAIN</string>
+    <string name="label_drop_header">DROP</string>
+    <string name="game_over">GAME OVER</string>
+    <string name="final_score">Final Score</string>
+    <string name="paused">PAUSED</string>
+
+    <!-- Dialogs -->
+    <string name="restart_title">Restart Game?</string>
+    <string name="restart_message">Are you sure you want to restart? Your current progress will be lost.</string>
+
+    <!-- Statistics -->
+    <string name="stats_title">STATISTICS</string>
+    <string name="stats_total_games">Total Games Played</string>
+    <string name="stats_high_score">Highest Score</string>
+    <string name="stats_highest_level">Highest Level</string>
+    <string name="stats_longest_chain">Longest Chain</string>
+    <string name="stats_best_move">Best Single Move</string>
+    <string name="stats_total_drops">Total Discs Dropped</string>
+    <string name="stats_all_time">All-Time Statistics</string>
+    <string name="stats_no_data">No data yet</string>
+    <string name="label_best">Best</string>
+    <string name="label_avg">Avg</string>
+    <string name="stats_subtitle">Track your progress across all modes</string>
+    <string name="stats_games_played_label">GAMES PLAYED</string>
+    <string name="stats_compare_modes">Compare All Modes</string>
+    <string name="stats_table_mode">Mode</string>
+    <string name="stats_no_games_mode">No games played yet in %1$s mode</string>
+    <string name="stats_start_playing_desc">Start playing to see your stats!</string>
+
+
+    <!-- Settings -->
+    <string name="settings_title">SETTINGS</string>
+    <string name="settings_animation_speed">Animation Speed</string>
+    <string name="settings_visual_theme">Visual Theme</string>
+    <string name="speed_slow">Slow</string>
+    <string name="speed_medium">Medium</string>
+    <string name="speed_fast">Fast</string>
+    <string name="theme_classic">Classic</string>
+    <string name="theme_neon">Neon</string>
+    <string name="theme_foundry">Foundry</string>
+    <string name="theme_woodblock">Woodblock</string>
+    <string name="theme_classic_desc">Simple clean colors</string>
+    <string name="theme_neon_desc">Neon arcade aesthetics</string>
+    <string name="theme_foundry_desc">Industrial concrete squares</string>
+    <string name="theme_woodblock_desc">Japanese print inspired artistry</string>
+
+
+    <!-- Challenge Config -->
+    <string name="challenge_config_title">CHALLENGE CONFIG</string>
+    <string name="label_select_difficulty">SELECT DIFFICULTY</string>
+
+    <string name="difficulty_easy">Easy</string>
+    <string name="difficulty_medium">Medium</string>
+    <string name="difficulty_hard">Hard</string>
+    <string name="difficulty_extreme">Extreme</string>
+    <string name="drops_per_row">%1$d drops per row</string>
+    <string name="start_challenge">START CHALLENGE</string>
+
+    <!-- How to Play -->
+    <string name="how_to_play_title">How To Play</string>
+    <string name="tutorial_step_1">Drop discs into the 7x7 grid.</string>
+    <string name="tutorial_step_2">Discs break when the number of contiguous discs in their row or column matches their value.</string>
+    <string name="tutorial_step_3">Gray solid discs must be cracked twice by adjacent breaks to reveal their number.</string>
+    <string name="tutorial_step_4">A new row is added from the bottom after a certain number of drops.</string>
+    <string name="tutorial_step_5">Don\'t let the discs get pushed out of the grid!</string>
+    <string name="tutorial_got_it">GOT IT!</string>
+
+    <!-- Accessibility -->
+    <string name="acc_grid_description">Game grid, level %1$d, score %2$d. Board contains %3$d discs.</string>
+    <string name="acc_preview_disc">Next disc to drop is a %1$s.</string>
+    <string name="acc_disc_numbered">numbered %1$d</string>
+    <string name="acc_disc_solid">solid disc</string>
+
+    <!-- Final strings -->
+    <string name="tutorial_chain_reactions_title">Chain Reactions</string>
+    <string name="tutorial_chain_reactions_desc">Breaking discs can cause follow-on breaks. Earn massive bonus multipliers by building long chains!</string>
+    <string name="tutorial_new_row_title">The New Row</string>
+    <string name="speed_multiplier_format">%1.1fx Speed</string>
+    <string name="level_bonus_format">Level Bonus +%1$d</string>
+    <string name="foundry_branding">EST. 2025 // INDUSTRIAL OPERATIONS</string>
 </resources>

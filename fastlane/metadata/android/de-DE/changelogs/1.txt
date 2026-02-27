@@ -1,0 +1,11 @@
+Erstveröffentlichung von DropCount!<br>
+<br>
+<ul>
+<li>Originalgetreue Nachbildung des klassischen Drop7-Puzzlespiels</li>
+<li>Drei Spielmodi: Normal, Herausforderung und Sequenz</li>
+<li>Kettenreaktionsmechanik mit nummerierten und soliden Scheiben</li>
+<li>Highscore-Tracking über alle Spielmodi hinweg</li>
+<li>Haptisches Feedback und flüssige Animationen</li>
+<li>Modernes Material 3 Design</li>
+<li>Völlig kostenlos und quelloffen</li>
+</ul>
