@@ -141,27 +141,32 @@ object GameConfig {
     /**
      * Bonus points awarded when a new row is added in Challenge Easy mode.
      */
-    const val CHALLENGE_EASY_LEVEL_BONUS_POINTS = 4000
+    const val CHALLENGE_EASY_LEVEL_BONUS_POINTS = 9000
 
     /**
      * Bonus points awarded when a new row is added in Challenge Medium mode.
      */
-    const val CHALLENGE_MEDIUM_LEVEL_BONUS_POINTS = 10000
+    const val CHALLENGE_MEDIUM_LEVEL_BONUS_POINTS = 14000
 
     /**
      * Bonus points awarded when a new row is added in Challenge Hard mode.
      */
-    const val CHALLENGE_HARD_LEVEL_BONUS_POINTS = 17000
+    const val CHALLENGE_HARD_LEVEL_BONUS_POINTS = 20000
 
     /**
      * Bonus points awarded when a new row is added in Challenge Extreme mode.
      */
-    const val CHALLENGE_EXTREME_LEVEL_BONUS_POINTS = 20000
+    const val CHALLENGE_EXTREME_LEVEL_BONUS_POINTS = 25000
 
     /**
      * Bonus points awarded when a new row is added in Sequence mode (leveling up).
      */
     const val SEQUENCE_MODE_LEVEL_BONUS_POINTS = 7000
+
+    /**
+     * Bonus points awarded when the player manages to clear the board of all discs.
+     */
+    const val BOARD_CLEAR_BONUS_POINTS = 70000
 
     // ===== Animation Duration Configuration (milliseconds) =====
     /**

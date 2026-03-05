@@ -121,5 +121,6 @@
     <string name="tutorial_new_row_title">A Nova Linha</string>
     <string name="speed_multiplier_format">%1.1fx Velocidade</string>
     <string name="level_bonus_format">Bônus de Nível +%1$d</string>
+    <string name="board_clear_bonus_format">TABULEIRO LIMPO!!! +%1$d</string>
     <string name="foundry_branding">EST. 2025 // OPERAÇÕES INDUSTRIAIS</string>
 </resources>

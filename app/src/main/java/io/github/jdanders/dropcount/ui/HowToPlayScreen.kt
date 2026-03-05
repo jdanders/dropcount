@@ -143,7 +143,7 @@ fun HowToPlayContent(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(12.dp)
         ) {
-            Text(if (pagerState.currentPage == pages.size - 1) stringResource(R.string.tutorial_got_it) else stringResource(R.string.action_cancel))
+            Text(if (pagerState.currentPage == pages.size - 1) stringResource(R.string.tutorial_got_it) else stringResource(R.string.action_close))
         }
     }
 }

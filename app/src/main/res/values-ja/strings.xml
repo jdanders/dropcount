@@ -121,5 +121,6 @@
     <string name="tutorial_new_row_title">新しい行</string>
     <string name="speed_multiplier_format">%1.1fx スピード</string>
     <string name="level_bonus_format">レベルボーナス +%1$d</string>
+    <string name="board_clear_bonus_format">盤面クリア!!! +%1$d</string>
     <string name="foundry_branding">EST. 2025 // 産業オペレーション</string>
 </resources>

@@ -114,7 +114,7 @@ fun SettingsDialog(
                 border = if (isFoundry) BorderStroke(2.dp, IndustrialOrange) else null
             ) {
                 Text(
-                    text = stringResource(R.string.action_cancel).uppercase(),
+                    text = stringResource(R.string.action_close).uppercase(),
                     fontWeight = FontWeight.Bold,
                     color = if (isFoundry) Color.Black else Color.Unspecified
                 )

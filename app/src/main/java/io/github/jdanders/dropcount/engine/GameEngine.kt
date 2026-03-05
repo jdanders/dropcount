@@ -54,12 +54,15 @@ class GameEngine(private val discGenerator: DiscGenerator) {
         val chainSteps = processChainReactionsWithSteps(newState)
         newState = chainSteps.lastOrNull()?.stateAfterRemoval ?: newState
 
+        var stateBeforeNewRow: GameState? = null
+        var stepsAfterNewRow: List<ChainStep> = emptyList()
+
         // Check if we need to add a new row
         if (newState.dropsUntilNewRow <= 0) {
             Logger.d("GameEngine", "Adding new row and checking for matches...")
 
             // Store state BEFORE adding new row for animation
-            val stateBeforeNewRow = newState
+            stateBeforeNewRow = newState
             val stateWithNewRow = addNewRow(newState)
 
             // If adding new row caused game over (discs pushed out), skip chain reaction processing
@@ -73,7 +76,7 @@ class GameEngine(private val discGenerator: DiscGenerator) {
             Logger.d("GameEngine", "New row created ${newRowSteps.size} chain steps")
 
             // Mark the first step after new row addition
-            val markedSteps = newRowSteps.mapIndexed { index, step ->
+            stepsAfterNewRow = newRowSteps.mapIndexed { index, step ->
                 if (index == 0) {
                     Logger.d("GameEngine", "Marking step 0 as first after new row")
                     step.copy(isFirstStepAfterNewRow = true)
@@ -82,27 +85,30 @@ class GameEngine(private val discGenerator: DiscGenerator) {
                 }
             }
 
-            val finalStateBeforeFullCheck = markedSteps.lastOrNull()?.stateAfterRemoval ?: stateWithNewRow
-            val finalState = if (finalStateBeforeFullCheck.status == GameStatus.Playing && finalStateBeforeFullCheck.isGridFull()) {
-                Logger.d("GameEngine", "Grid is entirely full - Game Over")
-                finalStateBeforeFullCheck.copy(status = GameStatus.GameOver)
-            } else {
-                finalStateBeforeFullCheck
-            }
-
-            val totalSteps = chainSteps.size + markedSteps.size
-            Logger.d("GameEngine", "Returning DropResult with $totalSteps total steps (${chainSteps.size} before row + ${markedSteps.size} after row)")
-            return DropResult(chainSteps, finalState, stateBeforeNewRow, markedSteps)
+            newState = stepsAfterNewRow.lastOrNull()?.stateAfterRemoval ?: stateWithNewRow
         }
 
-        Logger.d("GameEngine", "Returning DropResult with ${chainSteps.size} steps (no new row)")
-        val finalState = if (newState.status == GameStatus.Playing && newState.isGridFull()) {
+        Logger.d("GameEngine", "Finalizing drop result (new row: ${stateBeforeNewRow != null})")
+        
+        // Determine final game status and state
+        var finalState = if (newState.status == GameStatus.Playing && newState.isGridFull()) {
             Logger.d("GameEngine", "Grid is entirely full - Game Over")
             newState.copy(status = GameStatus.GameOver, recentDiscs = discGenerator.getRecentDiscs())
         } else {
             newState.copy(recentDiscs = discGenerator.getRecentDiscs())
         }
-        return DropResult(chainSteps, finalState, null, emptyList())
+
+        // Check for board clear bonus (SSOT)
+        var isBoardCleared = false
+        if (finalState.status == GameStatus.Playing && finalState.grid.all { row -> row.all { it.isEmpty() } }) {
+            Logger.d("GameEngine", "BOARD CLEARED! Awarding ${GameConfig.BOARD_CLEAR_BONUS_POINTS} bonus points")
+            finalState = finalState.copy(
+                score = finalState.score + GameConfig.BOARD_CLEAR_BONUS_POINTS
+            )
+            isBoardCleared = true
+        }
+
+        return DropResult(chainSteps, finalState, stateBeforeNewRow, stepsAfterNewRow, isBoardCleared = isBoardCleared)
     }
 
     /**

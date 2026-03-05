@@ -74,5 +74,6 @@ data class DropResult(
     val steps: List<ChainStep>, // Steps before new row (from dropped disc)
     val finalState: GameState,
     val stateBeforeNewRow: GameState? = null, // State before new row was added (for animation)
-    val stepsAfterNewRow: List<ChainStep> = emptyList() // Steps after new row (from new row matches)
+    val stepsAfterNewRow: List<ChainStep> = emptyList(), // Steps after new row (from new row matches)
+    val isBoardCleared: Boolean = false // True if the board was entirely cleared
 )

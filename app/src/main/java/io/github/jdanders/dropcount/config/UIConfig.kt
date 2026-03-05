@@ -18,6 +18,10 @@ object UIConfig {
     const val LEVEL_UP_ANIMATION_DURATION = 500
     const val LEVEL_UP_FONT_SIZE = 24
 
+    // Board clear animation
+    const val BOARD_CLEAR_ANIMATION_DELAY = 1000L
+    const val BOARD_CLEAR_ANIMATION_DURATION = 1000
+
     // Floating point text animation
     const val FLOATING_TEXT_ANIMATION_DELAY = 50L
     const val FLOATING_TEXT_OFFSET_Y = -60f

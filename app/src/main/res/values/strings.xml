@@ -125,5 +125,6 @@
     <string name="tutorial_new_row_title">The New Row</string>
     <string name="speed_multiplier_format">%1.1fx Speed</string>
     <string name="level_bonus_format">Level Bonus +%1$d</string>
+    <string name="board_clear_bonus_format">BOARD CLEARED!!! +%1$d</string>
     <string name="foundry_branding">EST. 2025 // INDUSTRIAL OPERATIONS</string>
 </resources>

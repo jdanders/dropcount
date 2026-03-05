@@ -28,7 +28,10 @@ import kotlinx.coroutines.delay
 fun LevelUpAnimation(
     bonusPoints: Int,
     onAnimationComplete: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    durationMillis: Int = UIConfig.LEVEL_UP_ANIMATION_DURATION,
+    delayMillis: Long = UIConfig.LEVEL_UP_ANIMATION_DELAY,
+    textFormatResId: Int = R.string.level_bonus_format
 ) {
     val textMeasurer = rememberTextMeasurer()
     val density = LocalDensity.current
@@ -38,7 +41,7 @@ fun LevelUpAnimation(
     val alpha by animateFloatAsState(
         targetValue = if (isVisible) 1f else 0f,
         animationSpec = tween(
-            durationMillis = UIConfig.LEVEL_UP_ANIMATION_DURATION,
+            durationMillis = durationMillis,
             easing = LinearEasing
         ),
         finishedListener = {
@@ -49,11 +52,11 @@ fun LevelUpAnimation(
 
     // Start animation after composition
     LaunchedEffect(Unit) {
-        delay(UIConfig.LEVEL_UP_ANIMATION_DELAY) // Small delay before starting fade out
+        delay(delayMillis) // Delay before starting fade out
         isVisible = false
     }
 
-    val text = stringResource(R.string.level_bonus_format, bonusPoints)
+    val text = stringResource(textFormatResId, bonusPoints)
     val textStyle = TextStyle(
         fontSize = UIConfig.LEVEL_UP_FONT_SIZE.sp,
         fontWeight = FontWeight.Light

@@ -121,5 +121,6 @@
     <string name="tutorial_new_row_title">La nouvelle rangée</string>
     <string name="speed_multiplier_format">%1.1fx Vitesse</string>
     <string name="level_bonus_format">Bonus de niveau +%1$d</string>
+    <string name="board_clear_bonus_format">PLATEAU VIDÉ!!! +%1$d</string>
     <string name="foundry_branding">EST. 2025 // OPÉRATIONS INDUSTRIELLES</string>
 </resources>

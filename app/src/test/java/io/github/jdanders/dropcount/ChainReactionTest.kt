@@ -1,5 +1,7 @@
 package io.github.jdanders.dropcount
 
+import io.github.jdanders.dropcount.config.GameConfig
+
 import io.github.jdanders.dropcount.engine.DiscGenerator
 import io.github.jdanders.dropcount.engine.GameEngine
 import io.github.jdanders.dropcount.model.*
@@ -67,11 +69,12 @@ class ChainReactionTest {
         // All discs should be gone
         assertEquals("Column should be empty after 2-level chain", 0, column3Discs)
         
-        // Score should reflect 2 chains:
+        // Score should reflect 2 chains + board clear bonus (since we cleared the grid at start):
         // Chain 1: 1 disc × 7 points × 1 multiplier = 7
         // Chain 2: 3 discs × 39 points = 117
-        // Total: 124
-        assertEquals("Score should be 124 (7 + 117)", 124, gameState.score)
+        // Board Clear Bonus: 70,000
+        // Total: 70,124
+        assertEquals("Score should be 70,124 (7 + 117 + 70000)", 124 + GameConfig.BOARD_CLEAR_BONUS_POINTS, gameState.score)
     }
     
     @Test

@@ -65,6 +65,7 @@ class GameViewModel(
     val hoveredColumn: StateFlow<Int?> = _uiState.map { it.hoveredColumn }.stateIn(viewModelScope, SharingStarted.Eagerly, null)
     val floatingPoints: StateFlow<Map<GridPosition, Int>> = _uiState.map { it.floatingPoints }.stateIn(viewModelScope, SharingStarted.Eagerly, emptyMap())
     val levelUpBonus: StateFlow<Int?> = _uiState.map { it.levelUpBonus }.stateIn(viewModelScope, SharingStarted.Eagerly, null)
+    val boardClearBonus: StateFlow<Int?> = _uiState.map { it.boardClearBonus }.stateIn(viewModelScope, SharingStarted.Eagerly, null)
     val canUndo: StateFlow<Boolean> = _uiState.map { it.canUndo }.stateIn(viewModelScope, SharingStarted.Eagerly, false)
     val animationSpeed: StateFlow<AnimationSpeed> = _animationData.map { it.speed }.stateIn(viewModelScope, SharingStarted.Eagerly, AnimationSpeed.MEDIUM)
 
@@ -350,7 +351,22 @@ class GameViewModel(
                     // Return to final state and idle
                     _gameState.value = stateAfterDrop
                     _animationData.value = _animationData.value.copy(state = AnimationState.Idle)
+                    
+                    // Show board clear animation if applicable
+                    if (dropResult.isBoardCleared) {
+                        Logger.d("GameViewModel", "Board cleared! Triggering animation")
+                        _uiState.value = _uiState.value.copy(boardClearBonus = GameConfig.BOARD_CLEAR_BONUS_POINTS)
+                    }
+                    
                     _uiState.value = _uiState.value.copy(floatingPoints = emptyMap(), levelUpBonus = null)
+                    
+                    // Reset boardClearBonus after internal delay (same as levelUpBonus)
+                    if (dropResult.isBoardCleared) {
+                        launch {
+                            delay(8000) // Increased delay for longer animation
+                            _uiState.value = _uiState.value.copy(boardClearBonus = null)
+                        }
+                    }
 
                     Logger.d("GameViewModel", "All animations complete, seed updated to $nextSeed")
 

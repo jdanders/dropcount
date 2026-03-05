@@ -102,4 +102,6 @@
     <string name="acc_preview_disc">El siguiente disco a soltar es %1$s.</string>
     <string name="acc_disc_numbered">numerado %1$d</string>
     <string name="acc_disc_solid">disco sólido</string>
+    <string name="level_bonus_format">Bono de nivel +%1$d</string>
+    <string name="board_clear_bonus_format">¡¡¡TABLERO LIMPIO!!! +%1$d</string>
 </resources>

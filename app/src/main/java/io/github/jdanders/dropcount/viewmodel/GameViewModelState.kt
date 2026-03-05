@@ -11,6 +11,7 @@ data class UIState(
     val hoveredColumn: Int? = null,
     val floatingPoints: Map<GridPosition, Int> = emptyMap(),
     val levelUpBonus: Int? = null,
+    val boardClearBonus: Int? = null,
     val canUndo: Boolean = false
 )
 

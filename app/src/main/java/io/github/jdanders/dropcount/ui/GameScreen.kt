@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import io.github.jdanders.dropcount.config.GameConfig
 import io.github.jdanders.dropcount.config.ThemeConfig
+import io.github.jdanders.dropcount.config.UIConfig
 import io.github.jdanders.dropcount.model.AnimationState
 import io.github.jdanders.dropcount.model.GameStatus
 import io.github.jdanders.dropcount.ui.components.DropsRemainingIndicator
@@ -53,6 +54,7 @@ fun GameScreen(
     val canUndo by viewModel.canUndo.collectAsState()
     val floatingPoints by viewModel.floatingPoints.collectAsState()
     val levelUpBonus by viewModel.levelUpBonus.collectAsState()
+    val boardClearBonus by viewModel.boardClearBonus.collectAsState()
     val animationSpeed by viewModel.animationSpeed.collectAsState()
     val visualTheme by viewModel.visualTheme.collectAsState()
 
@@ -276,6 +278,16 @@ fun GameScreen(
                             LevelUpAnimation(
                                 bonusPoints = bonus,
                                 onAnimationComplete = { }
+                            )
+                        }
+                        
+                        boardClearBonus?.let { bonus ->
+                            LevelUpAnimation(
+                                bonusPoints = bonus,
+                                onAnimationComplete = { },
+                                durationMillis = UIConfig.BOARD_CLEAR_ANIMATION_DURATION,
+                                delayMillis = UIConfig.BOARD_CLEAR_ANIMATION_DELAY,
+                                textFormatResId = R.string.board_clear_bonus_format
                             )
                         }
                     }
