@@ -141,7 +141,7 @@ object GameConfig {
     /**
      * Bonus points awarded when a new row is added in Challenge Easy mode.
      */
-    const val CHALLENGE_EASY_LEVEL_BONUS_POINTS = 9000
+    const val CHALLENGE_EASY_LEVEL_BONUS_POINTS = 5000
 
     /**
      * Bonus points awarded when a new row is added in Challenge Medium mode.
