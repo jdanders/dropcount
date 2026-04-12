@@ -44,8 +44,8 @@ fun HowToPlayDialog(
         Surface(
             modifier = Modifier
                 .fillMaxWidth(0.9f)
-                .wrapContentHeight()
-                .padding(16.dp),
+                .fillMaxHeight(0.9f)
+                .wrapContentHeight(),
             shape = RoundedCornerShape(24.dp),
             color = MaterialTheme.colorScheme.surface,
             tonalElevation = 8.dp
@@ -90,10 +90,15 @@ fun HowToPlayContent(
 
     val pagerState = rememberPagerState(pageCount = { pages.size })
 
-    Column(
+    BoxWithConstraints(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(24.dp),
+            .padding(16.dp)
+    ) {
+        val pagerHeight = (maxHeight * 0.5f).coerceIn(200.dp, 320.dp)
+
+    Column(
+        modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
@@ -103,18 +108,18 @@ fun HowToPlayContent(
             color = MaterialTheme.colorScheme.primary
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(12.dp))
 
         HorizontalPager(
             state = pagerState,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(320.dp)
+                .height(pagerHeight)
         ) { page ->
             TutorialPageContent(pages[page])
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(12.dp))
 
         // Page Indicator
         Row(
@@ -136,7 +141,7 @@ fun HowToPlayContent(
             }
         }
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(16.dp))
 
         Button(
             onClick = onDismiss,
@@ -146,6 +151,7 @@ fun HowToPlayContent(
             Text(if (pagerState.currentPage == pages.size - 1) stringResource(R.string.tutorial_got_it) else stringResource(R.string.action_close))
         }
     }
+    } // end BoxWithConstraints
 }
 
 @Composable

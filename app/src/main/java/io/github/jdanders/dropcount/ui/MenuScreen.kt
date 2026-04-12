@@ -1,9 +1,12 @@
 package io.github.jdanders.dropcount.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import io.github.jdanders.dropcount.model.AnimationSpeed
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -41,6 +44,8 @@ import io.github.jdanders.dropcount.ui.theme.*
 import io.github.jdanders.dropcount.config.UIConfig
 import io.github.jdanders.dropcount.config.ThemeConfig
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
+import io.github.jdanders.dropcount.ui.components.AutoShrinkText
 
 import androidx.compose.ui.res.stringResource
 import io.github.jdanders.dropcount.R
@@ -108,27 +113,13 @@ private fun ResponsiveTitle(
     color: Color = Color.White
 ) {
     BoxWithConstraints(modifier = modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-        val containerWidth = maxWidth
-        
-        // Initial responsive font size calculation
-        val calculatedFontSize = UIConfig.calculateTitleFontSize(containerWidth.value, baseFontSize)
-        var fontSize by remember(text, containerWidth, baseFontSize) { mutableStateOf(calculatedFontSize) }
-        var readyToDraw by remember(text, containerWidth, baseFontSize) { mutableStateOf(false) }
-
-        Text(
+        val initialFontSize = UIConfig.calculateTitleFontSize(maxWidth.value, baseFontSize)
+        AutoShrinkText(
             text = text,
-            style = style.copy(fontSize = fontSize),
-            color = if (readyToDraw) color else Color.Transparent,
-            textAlign = androidx.compose.ui.text.style.TextAlign.Center,
-            maxLines = 1,
-            softWrap = false,
-            onTextLayout = { textLayoutResult ->
-                if (textLayoutResult.hasVisualOverflow && fontSize.value > 10f) {
-                    fontSize = (fontSize.value * 0.9f).sp
-                } else {
-                    readyToDraw = true
-                }
-            },
+            style = style,
+            color = color,
+            textAlign = TextAlign.Center,
+            initialFontSize = initialFontSize,
             modifier = Modifier.fillMaxWidth()
         )
     }
@@ -153,140 +144,132 @@ private fun ClassicMenuContent(
             .fillMaxSize()
             .background(
                 brush = visualTheme.createRenderer().getBackgroundGradient()
-            ),
-        contentAlignment = Alignment.Center
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .systemBarsPadding()
-                .padding(32.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(20.dp)
-        ) {
-            // Title
-            ResponsiveTitle(
-                text = stringResource(R.string.menu_title),
-                style = MaterialTheme.typography.displayLarge.copy(
-                    fontWeight = FontWeight.Black,
-                    letterSpacing = 1.sp,
-                    shadow = Shadow(
-                        color = Color.White.copy(alpha = 0.25f),
-                        offset = Offset(0f, 0f),
-                        blurRadius = 24f
-                    )
-                ),
-                color = Color.White
             )
+    ) {
+        BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+            val screenH = maxHeight
+            val screenW = maxWidth
+            val contentPadding = (screenW.value * 0.08f).coerceIn(16f, 32f).dp
+            val itemSpacing = (screenH.value * 0.025f).coerceIn(8f, 20f).dp
 
-            Spacer(modifier = Modifier.height(8.dp))
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .systemBarsPadding()
+                    .padding(horizontal = contentPadding, vertical = contentPadding / 2)
+                    .verticalScroll(rememberScrollState()),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(itemSpacing)
+            ) {
+                // Title
+                ResponsiveTitle(
+                    text = stringResource(R.string.menu_title),
+                    style = MaterialTheme.typography.displayLarge.copy(
+                        fontWeight = FontWeight.Black,
+                        letterSpacing = 1.sp,
+                        shadow = Shadow(
+                            color = Color.White.copy(alpha = 0.25f),
+                            offset = Offset(0f, 0f),
+                            blurRadius = 24f
+                        )
+                    ),
+                    color = Color.White
+                )
 
-            // Resume button (if game is paused)
-            if (onResumeGame != null) {
+                // Resume button (if game is paused)
+                if (onResumeGame != null) {
+                    Button(
+                        onClick = onResumeGame,
+                        modifier = Modifier.fillMaxWidth(),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = ButtonPrimary
+                        )
+                    ) {
+                        Text(
+                            text = stringResource(R.string.action_resume),
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(vertical = 8.dp)
+                        )
+                    }
+                }
+
+                ModeButton(
+                    title = stringResource(id = R.string.menu_normal_mode),
+                    description = stringResource(id = R.string.menu_normal_desc_classic),
+                    onClick = { onStartGame(GameMode.Normal) }
+                )
+
+                // Challenge Mode Button
+                ModeButton(
+                    title = stringResource(id = R.string.menu_challenge_mode),
+                    description = stringResource(id = R.string.menu_challenge_desc_classic),
+                    onClick = {
+                        onStartGame(
+                            GameMode.Challenge(
+                                difficulty = io.github.jdanders.dropcount.model
+                                    .ChallengeDifficulty.HARD
+                            )
+                        )
+                    }
+                )
+
+                // Sequence Mode Button
+                ModeButton(
+                    title = stringResource(id = R.string.menu_sequence_mode),
+                    description = stringResource(id = R.string.menu_sequence_desc_classic),
+                    onClick = { onStartGame(GameMode.Sequence()) }
+                )
+
+                // Stats and Settings side-by-side
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Button(
+                        onClick = { showStatsDialog = true },
+                        modifier = Modifier.weight(1f),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = ButtonSecondary
+                        )
+                    ) {
+                        AutoShrinkText(
+                            text = stringResource(R.string.action_stats),
+                            style = LocalTextStyle.current.copy(fontSize = 14.sp, fontWeight = FontWeight.Bold),
+                            color = Color.White
+                        )
+                    }
+
+                    Button(
+                        onClick = { showSettings = true },
+                        modifier = Modifier.weight(1f),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = ButtonSettings
+                        )
+                    ) {
+                        AutoShrinkText(
+                            text = stringResource(R.string.action_settings),
+                            style = LocalTextStyle.current.copy(fontSize = 14.sp, fontWeight = FontWeight.Bold),
+                            color = Color.White
+                        )
+                    }
+                }
+
+                // How To Play - in column flow, no longer absolutely positioned
                 Button(
-                    onClick = onResumeGame,
+                    onClick = { showHowToPlay = true },
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = ButtonPrimary
-                    )
+                        containerColor = Color.White.copy(alpha = 0.1f)
+                    ),
+                    shape = RoundedCornerShape(12.dp)
                 ) {
-                    Text(
-                        text = stringResource(R.string.action_resume),
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(vertical = 8.dp)
+                    AutoShrinkText(
+                        text = stringResource(R.string.action_how_to_play),
+                        style = LocalTextStyle.current.copy(fontSize = 14.sp, fontWeight = FontWeight.Bold),
+                        color = Color.White.copy(alpha = 0.8f)
                     )
                 }
-            }
-
-            ModeButton(
-                title = stringResource(id = R.string.menu_normal_mode),
-                description = stringResource(id = R.string.menu_normal_desc_classic),
-                onClick = { onStartGame(GameMode.Normal) }
-            )
-
-            // Challenge Mode Button
-            ModeButton(
-                title = stringResource(id = R.string.menu_challenge_mode),
-                description = stringResource(id = R.string.menu_challenge_desc_classic),
-                onClick = {
-                    onStartGame(
-                        GameMode.Challenge(
-                            difficulty = io.github.jdanders.dropcount.model
-                                .ChallengeDifficulty.HARD
-                        )
-                    )
-                }
-            )
-
-            // Sequence Mode Button
-            ModeButton(
-                title = stringResource(id = R.string.menu_sequence_mode),
-                description = stringResource(id = R.string.menu_sequence_desc_classic),
-                onClick = { onStartGame(GameMode.Sequence()) }
-            )
-
-            Spacer(modifier = Modifier.height(4.dp))
-
-            // Stats and Settings side-by-side (Original position)
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                Button(
-                    onClick = { showStatsDialog = true },
-                    modifier = Modifier.weight(1f),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = ButtonSecondary
-                    )
-                ) {
-                    Text(
-                        text = stringResource(R.string.action_stats),
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(vertical = 4.dp)
-                    )
-                }
-
-                Button(
-                    onClick = { showSettings = true },
-                    modifier = Modifier.weight(1f),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = ButtonSettings
-                    )
-                ) {
-                    Text(
-                        text = stringResource(R.string.action_settings),
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(vertical = 4.dp)
-                    )
-                }
-            }
-        }
-
-        // Anchor HOW TO PLAY at the bottom
-        Box(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .systemBarsPadding()
-                .padding(bottom = 32.dp)
-                .padding(horizontal = 32.dp)
-        ) {
-            Button(
-                onClick = { showHowToPlay = true },
-                modifier = Modifier.fillMaxWidth(),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.White.copy(alpha = 0.1f)
-                ),
-                shape = RoundedCornerShape(12.dp)
-            ) {
-                Text(
-                    text = stringResource(R.string.action_how_to_play),
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.White.copy(alpha = 0.8f)
-                )
             }
         }
     }
@@ -382,13 +365,20 @@ private fun NeonMenuContent(
             },
         contentAlignment = Alignment.Center
     ) {
+        BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+            val screenH = maxHeight
+            val screenW = maxWidth
+            val contentPadding = (screenW.value * 0.08f).coerceIn(16f, 32f).dp
+            val itemSpacing = (screenH.value * 0.025f).coerceIn(6f, 24f).dp
+
         Column(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxSize()
                 .systemBarsPadding()
-                .padding(32.dp),
+                .padding(horizontal = contentPadding, vertical = contentPadding / 2)
+                .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(24.dp)
+            verticalArrangement = Arrangement.spacedBy(itemSpacing)
         ) {
             // Title with neon effect
             ResponsiveTitle(
@@ -426,7 +416,7 @@ private fun NeonMenuContent(
                 color = CyanGlow.copy(alpha = 0.6f)
             )
 
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(0.dp)) // spacer replaced by itemSpacing
 
              // Resume button (if game is paused)
             if (onResumeGame != null) {
@@ -436,7 +426,6 @@ private fun NeonMenuContent(
                     accentColor = LimeBeam,
                     onClick = onResumeGame
                 )
-                 Spacer(modifier = Modifier.height(16.dp))
             }
 
             // Mode buttons with glass morphism
@@ -461,8 +450,6 @@ private fun NeonMenuContent(
                 onClick = { onStartGame(GameMode.Sequence()) }
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
-
             // Action buttons
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -483,6 +470,7 @@ private fun NeonMenuContent(
                 )
             }
         }
+        } // end BoxWithConstraints
     }
 
     if (showHowToPlay) {
@@ -631,7 +619,7 @@ private fun NeonActionButton(
         ),
         border = androidx.compose.foundation.BorderStroke(1.dp, CyanGlow.copy(alpha = 0.3f))
     ) {
-        Text(
+        AutoShrinkText(
             text = "$icon $text",
             style = MaterialTheme.typography.labelLarge.copy(
                 fontWeight = FontWeight.SemiBold,
@@ -756,18 +744,24 @@ private fun WoodblockMenuContent(
             },
         contentAlignment = Alignment.Center
     ) {
+        BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+            val screenH = maxHeight
+            val screenW = maxWidth
+            val contentPadding = (screenW.value * 0.08f).coerceIn(16f, 32f).dp
+            val itemSpacing = (screenH.value * 0.025f).coerceIn(6f, 24f).dp
+
         Column(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxSize()
                 .systemBarsPadding()
-                .padding(32.dp),
+                .padding(horizontal = contentPadding, vertical = contentPadding / 2)
+                .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(24.dp)
+            verticalArrangement = Arrangement.spacedBy(itemSpacing)
         ) {
             // Title with traditional calligraphy style
             Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.padding(bottom = 16.dp)
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 ResponsiveTitle(
                     text = stringResource(R.string.menu_title),
@@ -805,8 +799,6 @@ private fun WoodblockMenuContent(
                 }
             }
 
-            Spacer(modifier = Modifier.height(8.dp))
-
             // Resume button
             if (onResumeGame != null) {
                 WoodblockModeButton(
@@ -815,7 +807,6 @@ private fun WoodblockMenuContent(
                     accentColor = WoodblockGold,
                     onClick = onResumeGame
                 )
-                Spacer(modifier = Modifier.height(8.dp))
             }
 
             // Mode buttons
@@ -826,7 +817,7 @@ private fun WoodblockMenuContent(
                 onClick = { onStartGame(GameMode.Normal) }
             )
 
-             WoodblockModeButton(
+            WoodblockModeButton(
                 title = stringResource(R.string.menu_challenge_mode).uppercase(),
                 description = stringResource(R.string.menu_challenge_desc_woodblock),
                 accentColor = WoodblockIndigo,
@@ -839,8 +830,6 @@ private fun WoodblockMenuContent(
                 accentColor = WoodblockSage,
                 onClick = { onStartGame(GameMode.Sequence()) }
             )
-
-            Spacer(modifier = Modifier.height(8.dp))
 
             // Action buttons
             Row(
@@ -860,6 +849,7 @@ private fun WoodblockMenuContent(
                 )
             }
         }
+        } // end BoxWithConstraints
     }
 
     if (showStatsDialog) {
@@ -980,7 +970,7 @@ private fun WoodblockActionButton(
         ),
         border = BorderStroke(2.dp, WoodblockInk)
     ) {
-        Text(
+        AutoShrinkText(
             text = text,
             style = MaterialTheme.typography.labelLarge.copy(
                 fontWeight = FontWeight.Bold,
@@ -1042,13 +1032,20 @@ private fun FoundryMenuContent(
             },
         contentAlignment = Alignment.Center
     ) {
+        BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+            val screenH = maxHeight
+            val screenW = maxWidth
+            val contentPadding = (screenW.value * 0.08f).coerceIn(16f, 32f).dp
+            val itemSpacing = (screenH.value * 0.025f).coerceIn(6f, 24f).dp
+
         Column(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxSize()
                 .systemBarsPadding()
-                .padding(32.dp),
+                .padding(horizontal = contentPadding, vertical = contentPadding / 2)
+                .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(24.dp)
+            verticalArrangement = Arrangement.spacedBy(itemSpacing)
         ) {
             // Title - Structural/Stenciled look
             ResponsiveTitle(
@@ -1074,8 +1071,6 @@ private fun FoundryMenuContent(
                 color = IndustrialOrange
             )
 
-            Spacer(modifier = Modifier.height(32.dp))
-
              // Resume button
             if (onResumeGame != null) {
                 FoundryModeButton(
@@ -1084,7 +1079,6 @@ private fun FoundryMenuContent(
                     onClick = onResumeGame,
                     isPrimary = true
                 )
-                 Spacer(modifier = Modifier.height(16.dp))
             }
 
             // Mode buttons
@@ -1106,8 +1100,6 @@ private fun FoundryMenuContent(
                 onClick = { onStartGame(GameMode.Sequence()) }
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
-
             // Action buttons
             Row(
                 modifier = Modifier.fillMaxWidth(),
@@ -1126,6 +1118,7 @@ private fun FoundryMenuContent(
                 )
             }
         }
+        } // end BoxWithConstraints
     }
 
     if (showStatsDialog) {
@@ -1211,7 +1204,7 @@ private fun FoundryActionButton(
         ),
         border = BorderStroke(2.dp, GridStroke)
     ) {
-        Text(
+        AutoShrinkText(
             text = text,
             style = MaterialTheme.typography.labelLarge.copy(
                 fontWeight = FontWeight.Bold,

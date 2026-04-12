@@ -3,9 +3,12 @@ package io.github.jdanders.dropcount.ui
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -24,6 +27,7 @@ import androidx.activity.compose.BackHandler
 
 import androidx.compose.ui.res.stringResource
 import io.github.jdanders.dropcount.R
+import io.github.jdanders.dropcount.ui.components.AutoShrinkText
 
 @Composable
 fun ChallengeModeConfigScreen(
@@ -42,106 +46,114 @@ fun ChallengeModeConfigScreen(
             .background(brush = renderer.getBackgroundGradient()),
         contentAlignment = Alignment.Center
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .systemBarsPadding()
-                .padding(32.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(20.dp)
-        ) {
-            // Title
+        BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+            val screenH = maxHeight
+            val screenW = maxWidth
+            val contentPadding = (screenW.value * 0.08f).coerceIn(16f, 32f).dp
+            val itemSpacing = (screenH.value * 0.025f).coerceIn(6f, 20f).dp
+            val startButtonHeight = (screenH.value * 0.1f).coerceIn(48f, 64f).dp
+
             Column(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalAlignment = if (isFoundry) Alignment.Start else Alignment.CenterHorizontally
+                modifier = Modifier
+                    .fillMaxSize()
+                    .systemBarsPadding()
+                    .padding(horizontal = contentPadding, vertical = contentPadding / 2)
+                    .verticalScroll(rememberScrollState()),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(itemSpacing)
             ) {
-                Text(
-                    text = stringResource(R.string.challenge_config_title).let { if (isFoundry) it.uppercase() else it },
-                    style = MaterialTheme.typography.displaySmall.copy(
-                        fontWeight = FontWeight.Black,
-                        letterSpacing = if (isFoundry) 2.sp else 1.sp,
-                        shadow = if (isFoundry) null else Shadow(
-                            color = Color.Black.copy(alpha = 0.5f),
-                            offset = Offset(4f, 4f),
-                            blurRadius = 8f
-                        )
-                    ),
-                    color = renderer.getLabelTextColor()
-                )
-                if (isFoundry) {
-                    Spacer(modifier = Modifier.height(4.dp))
-                    HorizontalDivider(color = IndustrialOrange, thickness = 2.dp)
+                // Title
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = if (isFoundry) Alignment.Start else Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = stringResource(R.string.challenge_config_title).let { if (isFoundry) it.uppercase() else it },
+                        style = MaterialTheme.typography.displaySmall.copy(
+                            fontWeight = FontWeight.Black,
+                            letterSpacing = if (isFoundry) 2.sp else 1.sp,
+                            shadow = if (isFoundry) null else Shadow(
+                                color = Color.Black.copy(alpha = 0.5f),
+                                offset = Offset(4f, 4f),
+                                blurRadius = 8f
+                            )
+                        ),
+                        color = renderer.getLabelTextColor()
+                    )
+                    if (isFoundry) {
+                        Spacer(modifier = Modifier.height(4.dp))
+                        HorizontalDivider(color = IndustrialOrange, thickness = 2.dp)
+                    }
                 }
-            }
 
-            Spacer(modifier = Modifier.height(8.dp))
+                // Difficulty Selection label
+                Text(
+                    text = stringResource(R.string.label_select_difficulty),
+                    style = MaterialTheme.typography.labelLarge.copy(
+                        fontWeight = FontWeight.Bold,
+                        letterSpacing = if (isFoundry) 2.sp else 1.sp
+                    ),
+                    color = if (isFoundry) StarkWhite.copy(alpha = 0.6f) else renderer.getLabelTextColor()
+                )
 
-            // Difficulty Selection
-            Text(
-                text = stringResource(R.string.label_select_difficulty),
-                style = MaterialTheme.typography.labelLarge.copy(
-                    fontWeight = FontWeight.Bold,
-                    letterSpacing = if (isFoundry) 2.sp else 1.sp
-                ),
-                color = if (isFoundry) StarkWhite.copy(alpha = 0.6f) else renderer.getLabelTextColor()
-            )
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalArrangement = Arrangement.spacedBy(itemSpacing / 2)
+                ) {
+                    ChallengeDifficulty.entries.forEach { difficulty ->
+                        DifficultyCard(
+                            difficulty = difficulty,
+                            isSelected = selectedDifficulty == difficulty,
+                            renderer = renderer,
+                            onClick = { selectedDifficulty = difficulty }
+                        )
+                    }
+                }
 
-            Column(
-                modifier = Modifier.fillMaxWidth(),
-                verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                ChallengeDifficulty.entries.forEach { difficulty ->
-                    DifficultyCard(
-                        difficulty = difficulty,
-                        isSelected = selectedDifficulty == difficulty,
-                        renderer = renderer,
-                        onClick = { selectedDifficulty = difficulty }
+                // Start Button
+                Button(
+                    onClick = { onStartGame(GameMode.Challenge(selectedDifficulty)) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(startButtonHeight),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = if (isFoundry) IndustrialOrange else ButtonPrimary,
+                        contentColor = Color.Black
+                    ),
+                    shape = if (isFoundry) RoundedCornerShape(0.dp) else RoundedCornerShape(16.dp),
+                    border = if (isFoundry) BorderStroke(2.dp, ShadowBlack) else null,
+                    elevation = if (isFoundry) null else ButtonDefaults.buttonElevation(defaultElevation = 4.dp)
+                ) {
+                    AutoShrinkText(
+                        text = stringResource(R.string.start_challenge).uppercase(),
+                        style = LocalTextStyle.current.copy(
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Black,
+                            letterSpacing = if (isFoundry) 2.sp else 1.sp
+                        ),
+                        color = Color.Black
                     )
                 }
-            }
 
-            Spacer(modifier = Modifier.height(24.dp))
-
-            // Start Button
-            Button(
-                onClick = {
-                    onStartGame(GameMode.Challenge(selectedDifficulty))
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(64.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = if (isFoundry) IndustrialOrange else ButtonPrimary,
-                    contentColor = Color.Black
-                ),
-                shape = if (isFoundry) RoundedCornerShape(0.dp) else RoundedCornerShape(16.dp),
-                border = if (isFoundry) BorderStroke(2.dp, ShadowBlack) else null,
-                elevation = if (isFoundry) null else ButtonDefaults.buttonElevation(defaultElevation = 4.dp)
-            ) {
-                Text(
-                    text = stringResource(R.string.start_challenge).uppercase(),
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Black,
-                    letterSpacing = if (isFoundry) 2.sp else 1.sp
-                )
-            }
-
-            // Back Button
-            TextButton(
-                onClick = onBack,
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                Text(
-                    text = stringResource(R.string.action_back).uppercase(),
-                    color = when {
-                        visualTheme == VisualTheme.WOODBLOCK -> WoodblockInk.copy(alpha = 0.8f)
-                        isFoundry -> StarkWhite.copy(alpha = 0.5f)
-                        else -> Color.White.copy(alpha = 0.6f)
-                    },
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold,
-                    letterSpacing = if (isFoundry) 2.sp else 1.sp
-                )
+                // Back Button
+                TextButton(
+                    onClick = onBack,
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    AutoShrinkText(
+                        text = stringResource(R.string.action_back).uppercase(),
+                        style = LocalTextStyle.current.copy(
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
+                            letterSpacing = if (isFoundry) 2.sp else 1.sp
+                        ),
+                        color = when {
+                            visualTheme == VisualTheme.WOODBLOCK -> WoodblockInk.copy(alpha = 0.8f)
+                            isFoundry -> StarkWhite.copy(alpha = 0.5f)
+                            else -> Color.White.copy(alpha = 0.6f)
+                        }
+                    )
+                }
             }
         }
     }
@@ -173,7 +185,7 @@ private fun DifficultyCard(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(20.dp),
+                .padding(horizontal = 16.dp, vertical = 12.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {

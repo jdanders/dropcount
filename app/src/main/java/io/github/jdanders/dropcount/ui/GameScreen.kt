@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -39,6 +40,7 @@ import io.github.jdanders.dropcount.viewmodel.GameViewModel
 
 import androidx.compose.ui.res.stringResource
 import io.github.jdanders.dropcount.R
+import java.text.NumberFormat
 
 @Composable
 fun GameScreen(
@@ -60,6 +62,7 @@ fun GameScreen(
 
     var showGameOverOverlay by remember { mutableStateOf(false) }
     var showRestartConfirmation by remember { mutableStateOf(false) }
+    val fmt = NumberFormat.getNumberInstance()
 
     androidx.compose.runtime.LaunchedEffect(gameState.status) {
         if (gameState.status == GameStatus.GameOver) {
@@ -88,18 +91,34 @@ fun GameScreen(
                 brush = visualTheme.createRenderer().getBackgroundGradient()
             )
     ) {
-        Column(
+        BoxWithConstraints(
             modifier = Modifier
                 .fillMaxSize()
                 .systemBarsPadding()
-                .padding(16.dp),
+        ) {
+            val screenH = maxHeight
+            val screenW = maxWidth
+            // Scale padding and spacing with screen size
+            val outerPadding = (screenW.value * 0.04f).coerceIn(8f, 16f).dp
+            val hudBottomPadding = (screenH.value * 0.02f).coerceIn(4f, 16f).dp
+            val chainIndicatorHeight = (screenH.value * 0.05f).coerceIn(20f, 32f).dp
+            val belowGridSpacer = (screenH.value * 0.02f).coerceIn(4f, 24f).dp
+            val hudFontScale = (screenW.value / 360f).coerceIn(0.6f, 1f)
+            val hudLabelSp = (12f * hudFontScale).sp
+            val hudScoreSp = (24f * hudFontScale).sp
+            val hudHighScoreSp = (20f * hudFontScale).sp
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(outerPadding),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Top bar
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(bottom = 16.dp),
+                    .padding(bottom = hudBottomPadding),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -107,13 +126,12 @@ fun GameScreen(
                     Text(
                         text = stringResource(R.string.label_score),
                         color = visualTheme.createRenderer().getLabelTextColor(),
-                        fontSize = 12.sp
+                        fontSize = hudLabelSp
                     )
-                    Text(
-                        text = gameState.score.toString(),
+                    AutoShrinkText(
+                        text = fmt.format(gameState.score),
                         color = if (visualTheme == VisualTheme.NEON) visualTheme.createRenderer().getScoreColor() else visualTheme.createRenderer().getLabelTextColor(),
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold
+                        style = LocalTextStyle.current.copy(fontSize = hudScoreSp, fontWeight = FontWeight.Bold)
                     )
                 }
 
@@ -121,13 +139,12 @@ fun GameScreen(
                     Text(
                         text = stringResource(R.string.label_high_score),
                         color = visualTheme.createRenderer().getLabelTextColor(),
-                        fontSize = 12.sp
+                        fontSize = hudLabelSp
                     )
-                    Text(
-                        text = highScore.toString(),
+                    AutoShrinkText(
+                        text = fmt.format(highScore),
                         color = if (visualTheme == VisualTheme.NEON) visualTheme.createRenderer().getHighScoreColor() else visualTheme.createRenderer().getLabelTextColor(),
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold
+                        style = LocalTextStyle.current.copy(fontSize = hudHighScoreSp, fontWeight = FontWeight.Bold)
                     )
                 }
 
@@ -135,13 +152,12 @@ fun GameScreen(
                     Text(
                         text = stringResource(R.string.label_level),
                         color = visualTheme.createRenderer().getLabelTextColor(),
-                        fontSize = 12.sp
+                        fontSize = hudLabelSp
                     )
-                    Text(
-                        text = gameState.level.toString(),
+                    AutoShrinkText(
+                        text = fmt.format(gameState.level),
                         color = if (visualTheme == VisualTheme.NEON) visualTheme.createRenderer().getScoreColor() else visualTheme.createRenderer().getLabelTextColor(),
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold
+                        style = LocalTextStyle.current.copy(fontSize = hudScoreSp, fontWeight = FontWeight.Bold)
                     )
                 }
             }
@@ -149,7 +165,7 @@ fun GameScreen(
             // Chain indicator
             Box(
                 modifier = Modifier
-                    .height(32.dp)
+                    .height(chainIndicatorHeight)
                     .fillMaxWidth(),
                 contentAlignment = Alignment.Center
             ) {
@@ -157,7 +173,7 @@ fun GameScreen(
                     Text(
                         text = stringResource(R.string.label_chain, gameState.currentChain),
                         color = AlertRed,
-                        fontSize = 20.sp,
+                        fontSize = (20f * hudFontScale).sp,
                         fontWeight = FontWeight.Bold
                     )
                 }
@@ -173,8 +189,8 @@ fun GameScreen(
                 val availableWidth = maxWidth
                 val availableHeight = maxHeight
 
-                // Reserve space for: Spacer(8dp) + Indicator(24dp) + LevelUp(60dp) + extra buffer(8dp) = 100dp
-                val reservedHeight = 100.dp
+                // Reserve space for indicator + level-up animation, scaled to screen
+                val reservedHeight = (availableHeight * 0.18f).coerceIn(60.dp, 100.dp)
 
                 // Grid is 7x7, plus 2 cells on top for preview = 7x9
                 // We want the largest cellSize that fits both width and height
@@ -294,7 +310,7 @@ fun GameScreen(
                 }
             }
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(belowGridSpacer))
 
             // Control buttons
             Row(
@@ -311,7 +327,7 @@ fun GameScreen(
                         disabledContentColor = Color.White
                     )
                 ) {
-                    Text(stringResource(R.string.action_undo), fontWeight = FontWeight.Bold)
+                    AutoShrinkText(stringResource(R.string.action_undo), style = LocalTextStyle.current.copy(fontWeight = FontWeight.Bold, fontSize = 14.sp), color = Color.White)
                 }
 
                 Button(
@@ -324,7 +340,7 @@ fun GameScreen(
                         disabledContentColor = Color.White
                     )
                 ) {
-                    Text(stringResource(R.string.action_restart), fontWeight = FontWeight.Bold)
+                    AutoShrinkText(stringResource(R.string.action_restart), style = LocalTextStyle.current.copy(fontWeight = FontWeight.Bold, fontSize = 14.sp), color = Color.White)
                 }
 
                 Button(
@@ -342,10 +358,11 @@ fun GameScreen(
                         disabledContentColor = Color.White
                     )
                 ) {
-                    Text(stringResource(R.string.action_menu), fontWeight = FontWeight.Bold)
+                    AutoShrinkText(stringResource(R.string.action_menu), style = LocalTextStyle.current.copy(fontWeight = FontWeight.Bold, fontSize = 14.sp), color = Color.White)
                 }
             }
         }
+        } // end BoxWithConstraints
 
         // Restart Confirmation Dialog
         if (showRestartConfirmation) {
@@ -429,11 +446,10 @@ fun GameScreen(
                             color = visualTheme.createRenderer().getLabelTextColor(),
                             fontSize = 16.sp
                         )
-                        Text(
-                            text = gameState.score.toString(),
+                        AutoShrinkText(
+                            text = fmt.format(gameState.score),
                             color = if (visualTheme == VisualTheme.NEON) visualTheme.createRenderer().getScoreColor() else visualTheme.createRenderer().getLabelTextColor(),
-                            fontSize = 40.sp,
-                            fontWeight = FontWeight.Bold
+                            style = LocalTextStyle.current.copy(fontSize = 40.sp, fontWeight = FontWeight.Bold)
                         )
 
                         Spacer(modifier = Modifier.height(16.dp))
@@ -462,7 +478,7 @@ fun GameScreen(
                                     containerColor = ButtonPrimary
                                 )
                             ) {
-                                Text(stringResource(R.string.action_play_again))
+                                AutoShrinkText(stringResource(R.string.action_play_again), style = LocalTextStyle.current.copy(fontSize = 14.sp), color = Color.White)
                             }
 
                             Button(
@@ -471,7 +487,7 @@ fun GameScreen(
                                     containerColor = ButtonPrimary
                                 )
                             ) {
-                                Text(stringResource(R.string.action_menu))
+                                AutoShrinkText(stringResource(R.string.action_menu), style = LocalTextStyle.current.copy(fontSize = 14.sp), color = Color.White)
                             }
                         }
                     }
@@ -515,7 +531,7 @@ fun GameScreen(
                                     containerColor = ButtonPrimary
                                 )
                             ) {
-                                Text(stringResource(R.string.action_resume))
+                                AutoShrinkText(stringResource(R.string.action_resume), style = LocalTextStyle.current.copy(fontSize = 14.sp), color = Color.White)
                             }
 
                             Button(
@@ -524,7 +540,7 @@ fun GameScreen(
                                     containerColor = CardBackground
                                 )
                             ) {
-                                Text(stringResource(R.string.action_menu))
+                                AutoShrinkText(stringResource(R.string.action_menu), style = LocalTextStyle.current.copy(fontSize = 14.sp), color = Color.White)
                             }
                         }
                     }

@@ -14,6 +14,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -24,6 +25,8 @@ import io.github.jdanders.dropcount.ui.theme.*
 import androidx.compose.ui.res.stringResource
 import io.github.jdanders.dropcount.R
 import androidx.annotation.StringRes
+import io.github.jdanders.dropcount.ui.components.AutoShrinkText
+import java.text.NumberFormat
 import kotlin.math.roundToInt
 
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
@@ -60,35 +63,36 @@ fun StatisticsDialog(
     }
 
     val comparisonStats = remember {
+        val fmt = NumberFormat.getNumberInstance()
         listOf(
             ComparisonStat(
                 id = "score",
                 labelRes = R.string.label_score,
-                getBest = { it.highestScore.toString() },
-                getAverage = { it.averageScore.roundToInt().toString() }
+                getBest = { fmt.format(it.highestScore) },
+                getAverage = { fmt.format(it.averageScore.roundToInt()) }
             ),
             ComparisonStat(
                 id = "level",
                 labelRes = R.string.label_level,
-                getBest = { it.highestLevel.toString() },
+                getBest = { fmt.format(it.highestLevel) },
                 getAverage = { "%.1f".format(it.averageLevel) }
             ),
             ComparisonStat(
                 id = "chain",
                 labelRes = R.string.label_chain_header,
-                getBest = { it.longestChain.toString() },
+                getBest = { fmt.format(it.longestChain) },
                 getAverage = { "%.1f".format(it.averageChainLength) }
             ),
             ComparisonStat(
                 id = "move",
                 labelRes = R.string.label_drop_header,
-                getBest = { it.highestSingleMove.toString() },
-                getAverage = { it.averageSingleMoveScore.roundToInt().toString() }
+                getBest = { fmt.format(it.highestSingleMove) },
+                getAverage = { fmt.format(it.averageSingleMoveScore.roundToInt()) }
             ),
             ComparisonStat(
                 id = "games",
                 labelRes = R.string.stats_total_games,
-                getBest = { it.totalGamesPlayed.toString() },
+                getBest = { fmt.format(it.totalGamesPlayed) },
                 getAverage = null
             )
         )
@@ -174,7 +178,7 @@ fun StatisticsDialog(
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Text(
-                                text = currentStats.totalGamesPlayed.toString(),
+                                text = NumberFormat.getNumberInstance().format(currentStats.totalGamesPlayed),
                                 fontSize = 40.sp,
                                 fontWeight = FontWeight.Black,
                                 color = if (isFoundry) IndustrialOrange else Color.Black
@@ -190,6 +194,7 @@ fun StatisticsDialog(
                     }
 
                     // Stats Grid
+                    val fmt = NumberFormat.getNumberInstance()
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -197,8 +202,8 @@ fun StatisticsDialog(
                         StatCard(
                             modifier = Modifier.weight(1f),
                             label = stringResource(R.string.stats_high_score),
-                            value = currentStats.highestScore.toString(),
-                            subValue = "${stringResource(R.string.label_avg).lowercase()}: ${currentStats.averageScore.roundToInt()}",
+                            value = fmt.format(currentStats.highestScore),
+                            subValue = "${stringResource(R.string.label_avg).lowercase()}: ${fmt.format(currentStats.averageScore.roundToInt())}",
                             color = when {
                                 visualTheme == VisualTheme.NEON -> renderer.getScoreColor()
                                 visualTheme == VisualTheme.FOUNDRY -> IndustrialOrange
@@ -209,7 +214,7 @@ fun StatisticsDialog(
                         StatCard(
                             modifier = Modifier.weight(1f),
                             label = stringResource(R.string.stats_highest_level),
-                            value = currentStats.highestLevel.toString(),
+                            value = fmt.format(currentStats.highestLevel),
                             subValue = "${stringResource(R.string.label_avg).lowercase()}: ${"%.1f".format(currentStats.averageLevel)}",
                             color = when {
                                 visualTheme == VisualTheme.NEON -> renderer.getHighScoreColor()
@@ -227,7 +232,7 @@ fun StatisticsDialog(
                         StatCard(
                             modifier = Modifier.weight(1f),
                             label = stringResource(R.string.stats_longest_chain),
-                            value = currentStats.longestChain.toString(),
+                            value = fmt.format(currentStats.longestChain),
                             subValue = "${stringResource(R.string.label_avg).lowercase()}: ${"%.1f".format(currentStats.averageChainLength)}",
                             color = when {
                                 visualTheme == VisualTheme.NEON -> renderer.getDiscColor(6)
@@ -239,8 +244,8 @@ fun StatisticsDialog(
                         StatCard(
                             modifier = Modifier.weight(1f),
                             label = stringResource(R.string.stats_best_move),
-                            value = currentStats.highestSingleMove.toString(),
-                            subValue = "${stringResource(R.string.label_avg).lowercase()}: ${currentStats.averageSingleMoveScore.roundToInt()}",
+                            value = fmt.format(currentStats.highestSingleMove),
+                            subValue = "${stringResource(R.string.label_avg).lowercase()}: ${fmt.format(currentStats.averageSingleMoveScore.roundToInt())}",
                             color = when {
                                 visualTheme == VisualTheme.NEON -> renderer.getDiscColor(4)
                                 visualTheme == VisualTheme.FOUNDRY -> IndustrialOrange
@@ -323,19 +328,17 @@ fun StatisticsDialog(
                                                 fontWeight = FontWeight.Bold,
                                                 modifier = Modifier.weight(1f)
                                             )
-                                            Text(
+                                            AutoShrinkText(
                                                 text = stringResource(R.string.label_best),
                                                 color = renderer.getLabelTextColor(),
-                                                fontSize = 12.sp,
-                                                fontWeight = FontWeight.Bold,
+                                                style = TextStyle(fontSize = 12.sp, fontWeight = FontWeight.Bold),
                                                 modifier = Modifier.weight(1f)
                                             )
                                             if (currentComparisonStat.getAverage != null) {
-                                                Text(
+                                                AutoShrinkText(
                                                     text = stringResource(R.string.label_avg),
                                                     color = renderer.getLabelTextColor(),
-                                                    fontSize = 12.sp,
-                                                    fontWeight = FontWeight.Bold,
+                                                    style = TextStyle(fontSize = 12.sp, fontWeight = FontWeight.Bold),
                                                     modifier = Modifier.weight(1f)
                                                 )
                                             }
@@ -360,18 +363,17 @@ fun StatisticsDialog(
                                                         fontWeight = FontWeight.Medium,
                                                         modifier = Modifier.weight(1f)
                                                     )
-                                                    Text(
+                                                    AutoShrinkText(
                                                         text = currentComparisonStat.getBest(modeStats),
                                                         color = renderer.getLabelTextColor(),
-                                                        fontSize = 14.sp,
-                                                        fontWeight = FontWeight.Bold,
+                                                        style = TextStyle(fontSize = 14.sp, fontWeight = FontWeight.Bold),
                                                         modifier = Modifier.weight(1f)
                                                     )
                                                     if (currentComparisonStat.getAverage != null) {
-                                                        Text(
+                                                        AutoShrinkText(
                                                             text = currentComparisonStat.getAverage.invoke(modeStats),
                                                             color = renderer.getLabelTextColor().copy(alpha = 0.6f),
-                                                            fontSize = 14.sp,
+                                                            style = TextStyle(fontSize = 14.sp),
                                                             modifier = Modifier.weight(1f)
                                                         )
                                                     }
@@ -546,10 +548,12 @@ private fun StatCard(
                 horizontalArrangement = Arrangement.End
             ) {
                 Column(horizontalAlignment = Alignment.End) {
-                    Text(
+                    AutoShrinkText(
                         text = value,
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Black,
+                        style = androidx.compose.ui.text.TextStyle(
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.Black
+                        ),
                         color = color
                     )
                     Text(

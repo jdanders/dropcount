@@ -12,6 +12,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import java.text.NumberFormat
 import io.github.jdanders.dropcount.R
 import io.github.jdanders.dropcount.data.ModeGameStatistics
 import io.github.jdanders.dropcount.model.VisualTheme
@@ -72,9 +73,10 @@ fun GameStatisticsDisplay(
             Spacer(modifier = Modifier.height(4.dp))
 
             // Current game stats
+            val fmt = NumberFormat.getNumberInstance()
             StatRow(
                 label = stringResource(R.string.label_score),
-                value = currentScore.toString(),
+                value = fmt.format(currentScore),
                 highlight = true,
                 isNewHighScore = isNewHighScore,
                 visualTheme = visualTheme
@@ -82,21 +84,21 @@ fun GameStatisticsDisplay(
 
             StatRow(
                 label = stringResource(R.string.stats_highest_level),
-                value = currentLevel.toString(),
+                value = fmt.format(currentLevel),
                 isNewHighScore = isNewLevelRecord,
                 visualTheme = visualTheme
             )
 
             StatRow(
                 label = stringResource(R.string.stats_longest_chain),
-                value = currentChainLength.toString(),
+                value = fmt.format(currentChainLength),
                 isNewHighScore = isNewChainRecord,
                 visualTheme = visualTheme
             )
 
             StatRow(
                 label = stringResource(R.string.stats_best_move),
-                value = currentSingleMove.toString(),
+                value = fmt.format(currentSingleMove),
                 isNewHighScore = isNewDropRecord,
                 visualTheme = visualTheme
             )
@@ -165,16 +167,17 @@ private fun StatRow(
             },
             color = labelColor
         )
-        Text(
+        val baseStyle = if (highlight) {
+            MaterialTheme.typography.titleLarge.copy(
+                fontWeight = FontWeight.Bold,
+                letterSpacing = if (isFoundry) 1.sp else 0.sp
+            )
+        } else {
+            MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Medium)
+        }
+        AutoShrinkText(
             text = if (isNewHighScore && !isFoundry) "🌟 $value" else value,
-            style = if (highlight) {
-                MaterialTheme.typography.titleLarge.copy(
-                    fontWeight = FontWeight.Bold,
-                    letterSpacing = if (isFoundry) 1.sp else 0.sp
-                )
-            } else {
-                MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Medium)
-            },
+            style = baseStyle,
             color = valueColor
         )
     }
@@ -187,6 +190,7 @@ private fun StatisticsTable(
     modifier: Modifier = Modifier
 ) {
     val isFoundry = visualTheme == VisualTheme.FOUNDRY
+    val fmt = NumberFormat.getNumberInstance()
     Column(
         modifier = modifier.fillMaxWidth()
     ) {
@@ -210,10 +214,10 @@ private fun StatisticsTable(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             TableLabelCell(stringResource(R.string.label_best), visualTheme = visualTheme, modifier = Modifier.weight(1f))
-            TableDataCell(statistics.highestScore.toString(), visualTheme = visualTheme, modifier = Modifier.weight(1f))
-            TableDataCell(statistics.highestLevel.toString(), visualTheme = visualTheme, modifier = Modifier.weight(1f))
-            TableDataCell(statistics.longestChain.toString(), visualTheme = visualTheme, modifier = Modifier.weight(1f))
-            TableDataCell(statistics.highestSingleMove.toString(), visualTheme = visualTheme, modifier = Modifier.weight(1f))
+            TableDataCell(fmt.format(statistics.highestScore), visualTheme = visualTheme, modifier = Modifier.weight(1f))
+            TableDataCell(fmt.format(statistics.highestLevel), visualTheme = visualTheme, modifier = Modifier.weight(1f))
+            TableDataCell(fmt.format(statistics.longestChain), visualTheme = visualTheme, modifier = Modifier.weight(1f))
+            TableDataCell(fmt.format(statistics.highestSingleMove), visualTheme = visualTheme, modifier = Modifier.weight(1f))
         }
 
         Spacer(modifier = Modifier.height(4.dp))
@@ -224,10 +228,10 @@ private fun StatisticsTable(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             TableLabelCell(stringResource(R.string.label_avg), visualTheme = visualTheme, modifier = Modifier.weight(1f))
-            TableDataCell(statistics.averageScore.roundToInt().toString(), visualTheme = visualTheme, modifier = Modifier.weight(1f))
+            TableDataCell(fmt.format(statistics.averageScore.roundToInt()), visualTheme = visualTheme, modifier = Modifier.weight(1f))
             TableDataCell(String.format("%.1f", statistics.averageLevel), visualTheme = visualTheme, modifier = Modifier.weight(1f))
             TableDataCell(String.format("%.1f", statistics.averageChainLength), visualTheme = visualTheme, modifier = Modifier.weight(1f))
-            TableDataCell(statistics.averageSingleMoveScore.roundToInt().toString(), visualTheme = visualTheme, modifier = Modifier.weight(1f))
+            TableDataCell(statistics.averageSingleMoveScore.roundToInt().let { fmt.format(it) }, visualTheme = visualTheme, modifier = Modifier.weight(1f))
         }
     }
 }
@@ -275,7 +279,7 @@ private fun TableDataCell(
     modifier: Modifier = Modifier
 ) {
     val isFoundry = visualTheme == VisualTheme.FOUNDRY
-    Text(
+    AutoShrinkText(
         text = text,
         style = MaterialTheme.typography.bodyMedium.copy(
             fontWeight = if (isFoundry) FontWeight.Bold else FontWeight.Normal
@@ -284,3 +288,5 @@ private fun TableDataCell(
         modifier = modifier
     )
 }
+
+
