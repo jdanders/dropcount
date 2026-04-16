@@ -1,9 +1,13 @@
 package io.github.jdanders.dropcount.ui
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.animation.*
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -59,6 +63,7 @@ fun GameScreen(
     val boardClearBonus by viewModel.boardClearBonus.collectAsState()
     val animationSpeed by viewModel.animationSpeed.collectAsState()
     val visualTheme by viewModel.visualTheme.collectAsState()
+    val chainSummary by viewModel.chainSummary.collectAsState()
 
     var showGameOverOverlay by remember { mutableStateOf(false) }
     var showRestartConfirmation by remember { mutableStateOf(false) }
@@ -101,7 +106,7 @@ fun GameScreen(
             // Scale padding and spacing with screen size
             val outerPadding = (screenW.value * 0.04f).coerceIn(8f, 16f).dp
             val hudBottomPadding = (screenH.value * 0.02f).coerceIn(4f, 16f).dp
-            val chainIndicatorHeight = (screenH.value * 0.05f).coerceIn(20f, 32f).dp
+            val chainIndicatorHeight = (screenH.value * 0.1f).coerceIn(40f, 64f).dp
             val belowGridSpacer = (screenH.value * 0.02f).coerceIn(4f, 24f).dp
             val hudFontScale = (screenW.value / 360f).coerceIn(0.6f, 1f)
             val hudLabelSp = (12f * hudFontScale).sp
@@ -163,19 +168,50 @@ fun GameScreen(
             }
 
             // Chain indicator
-            Box(
+            Column(
                 modifier = Modifier
                     .height(chainIndicatorHeight)
                     .fillMaxWidth(),
-                contentAlignment = Alignment.Center
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
             ) {
-                if (gameState.currentChain > 1) {
-                    Text(
-                        text = stringResource(R.string.label_chain, gameState.currentChain),
-                        color = AlertRed,
-                        fontSize = (20f * hudFontScale).sp,
-                        fontWeight = FontWeight.Bold
-                    )
+
+                // Temporary chain summary (shown after drop) with animations
+                AnimatedVisibility(
+                    visible = chainSummary != null,
+                    enter = fadeIn(animationSpec = spring(stiffness = Spring.StiffnessLow)) + 
+                            scaleIn(initialScale = 0.8f, animationSpec = spring(dampingRatio = Spring.DampingRatioMediumBouncy)),
+                    exit = fadeOut() + scaleOut(targetScale = 0.8f)
+                ) {
+                    chainSummary?.let { cs ->
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            verticalArrangement = Arrangement.spacedBy(4.dp)
+                        ) {
+                            // The "CHAIN xN" Part (Line 1)
+                            Text(
+                                text = stringResource(R.string.label_multiplier, cs.first),
+                                color = AlertRed,
+                                fontSize = (16f * hudFontScale).sp,
+                                fontWeight = FontWeight.Bold
+                            )
+                            
+                            // The Score Points (Line 2)
+                            Text(
+                                text = stringResource(R.string.label_score_increment, fmt.format(cs.second)),
+                                color = ScoreColor,
+                                fontSize = (24f * hudFontScale).sp,
+                                fontWeight = FontWeight.Black,
+                                style = LocalTextStyle.current.copy(
+                                    shadow = androidx.compose.ui.graphics.Shadow(
+                                        color = Color.Black.copy(alpha = 0.3f),
+                                        offset = androidx.compose.ui.geometry.Offset(2f, 2f),
+                                        blurRadius = 4f
+                                    )
+                                )
+                            )
+                        }
+                    }
                 }
             }
 

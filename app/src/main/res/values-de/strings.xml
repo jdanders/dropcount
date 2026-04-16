@@ -54,6 +54,11 @@
     <!-- Dialogs -->
     <string name="restart_title">Spiel neustarten?</string>
     <string name="restart_message">Bist du sicher, dass du neu starten möchtest? Dein aktueller Fortschritt geht verloren.</string>
+    <string name="new_game_title">Neues Spiel starten?</string>
+    <string name="new_game_message">Ein neues Spiel beendet deine aktuelle Sitzung. Fortfahren?</string>
+    <string name="action_start_new">NEU STARTEN</string>
+    <string name="label_multiplier">KETTE x%1$d</string>
+    <string name="label_score_increment">+%1$s</string>
 
     <!-- Statistics -->
     <string name="stats_title">STATISTIKEN</string>

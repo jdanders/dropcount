@@ -55,6 +55,11 @@
     <!-- Dialogs -->
     <string name="restart_title">Restart Game?</string>
     <string name="restart_message">Are you sure you want to restart? Your current progress will be lost.</string>
+    <string name="new_game_title">Start New Game?</string>
+    <string name="new_game_message">Starting a new game will end your current session. Continue?</string>
+    <string name="action_start_new">START NEW</string>
+    <string name="label_multiplier">CHAIN x%1$d</string>
+    <string name="label_score_increment">+%1$s</string>
 
     <!-- Statistics -->
     <string name="stats_title">STATISTICS</string>

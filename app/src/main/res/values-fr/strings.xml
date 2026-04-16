@@ -54,6 +54,11 @@
     <!-- Dialogs -->
     <string name="restart_title">Recommencer ?</string>
     <string name="restart_message">Êtes-vous sûr de vouloir recommencer ? Votre progression actuelle sera perdue.</string>
+    <string name="new_game_title">Nouvelle partie ?</string>
+    <string name="new_game_message">Commencer une nouvelle partie mettra fin à votre session actuelle. Continuer ?</string>
+    <string name="action_start_new">DÉMARRER</string>
+    <string name="label_multiplier">CHAÎNE x%1$d</string>
+    <string name="label_score_increment">+%1$s</string>
 
     <!-- Statistics -->
     <string name="stats_title">STATISTIQUES</string>

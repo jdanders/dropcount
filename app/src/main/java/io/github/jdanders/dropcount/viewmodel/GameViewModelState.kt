@@ -12,7 +12,9 @@ data class UIState(
     val floatingPoints: Map<GridPosition, Int> = emptyMap(),
     val levelUpBonus: Int? = null,
     val boardClearBonus: Int? = null,
-    val canUndo: Boolean = false
+    val canUndo: Boolean = false,
+    // Pair of (chainLength, totalChainScore) shown briefly after a drop resolves
+    val chainSummary: Pair<Int, Int>? = null
 )
 
 /**

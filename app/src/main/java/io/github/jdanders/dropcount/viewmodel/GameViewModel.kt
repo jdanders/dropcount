@@ -23,6 +23,7 @@ import io.github.jdanders.dropcount.model.VisualTheme
 import io.github.jdanders.dropcount.viewmodel.UIState
 import io.github.jdanders.dropcount.viewmodel.AnimationData
 import io.github.jdanders.dropcount.util.Logger
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -68,6 +69,7 @@ class GameViewModel(
     val boardClearBonus: StateFlow<Int?> = _uiState.map { it.boardClearBonus }.stateIn(viewModelScope, SharingStarted.Eagerly, null)
     val canUndo: StateFlow<Boolean> = _uiState.map { it.canUndo }.stateIn(viewModelScope, SharingStarted.Eagerly, false)
     val animationSpeed: StateFlow<AnimationSpeed> = _animationData.map { it.speed }.stateIn(viewModelScope, SharingStarted.Eagerly, AnimationSpeed.MEDIUM)
+    val chainSummary: StateFlow<Pair<Int, Int>?> = _uiState.map { it.chainSummary }.stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
     private val _visualTheme = MutableStateFlow(VisualTheme.CLASSIC)
     val visualTheme: StateFlow<VisualTheme> = _visualTheme.asStateFlow()
@@ -91,6 +93,12 @@ class GameViewModel(
 
     // Undo history - stores previous game states
     private val undoHistory = mutableListOf<GameState>()
+
+    // Job tracking for chain summary timer to prevent race conditions
+    private var chainSummaryTimerJob: Job? = null
+
+    // Job tracking for board clear bonus timer
+    private var boardClearTimerJob: Job? = null
 
     // Store statistics from BEFORE the current game ends (for display on game over screen)
     private val _statisticsBeforeGameOver = MutableStateFlow<ModeGameStatistics?>(null)
@@ -359,10 +367,26 @@ class GameViewModel(
                     }
                     
                     _uiState.value = _uiState.value.copy(floatingPoints = emptyMap(), levelUpBonus = null)
-                    
+
+                    // Compute chain summary for all chain steps from this drop
+                    val allSteps = dropResult.steps + dropResult.stepsAfterNewRow
+                    val finalChainLength = allSteps.lastOrNull()?.chainLevel ?: 0
+                    val chainScoreTotal = allSteps.sumOf { step ->
+                        step.discPointValues.values.sum()
+                    }
+                    if (finalChainLength >= 1 && chainScoreTotal > 0) {
+                        _uiState.value = _uiState.value.copy(chainSummary = Pair(finalChainLength, chainScoreTotal))
+                        chainSummaryTimerJob?.cancel()
+                        chainSummaryTimerJob = launch {
+                            delay(3000)
+                            _uiState.value = _uiState.value.copy(chainSummary = null)
+                        }
+                    }
+
                     // Reset boardClearBonus after internal delay (same as levelUpBonus)
                     if (dropResult.isBoardCleared) {
-                        launch {
+                        boardClearTimerJob?.cancel()
+                        boardClearTimerJob = launch {
                             delay(8000) // Increased delay for longer animation
                             _uiState.value = _uiState.value.copy(boardClearBonus = null)
                         }

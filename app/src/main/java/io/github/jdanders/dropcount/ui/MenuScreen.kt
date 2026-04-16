@@ -138,6 +138,17 @@ private fun ClassicMenuContent(
     var showStatsDialog by remember { mutableStateOf(false) }
     var showSettings by remember { mutableStateOf(false) }
     var showHowToPlay by remember { mutableStateOf(false) }
+    var showNewGameConfirmation by remember { mutableStateOf(false) }
+    var pendingGameMode by remember { mutableStateOf<GameMode?>(null) }
+
+    fun requestStartGame(mode: GameMode) {
+        if (onResumeGame != null) {
+            pendingGameMode = mode
+            showNewGameConfirmation = true
+        } else {
+            onStartGame(mode)
+        }
+    }
 
     Box(
         modifier = Modifier
@@ -197,7 +208,7 @@ private fun ClassicMenuContent(
                 ModeButton(
                     title = stringResource(id = R.string.menu_normal_mode),
                     description = stringResource(id = R.string.menu_normal_desc_classic),
-                    onClick = { onStartGame(GameMode.Normal) }
+                    onClick = { requestStartGame(GameMode.Normal) }
                 )
 
                 // Challenge Mode Button
@@ -205,7 +216,7 @@ private fun ClassicMenuContent(
                     title = stringResource(id = R.string.menu_challenge_mode),
                     description = stringResource(id = R.string.menu_challenge_desc_classic),
                     onClick = {
-                        onStartGame(
+                        requestStartGame(
                             GameMode.Challenge(
                                 difficulty = io.github.jdanders.dropcount.model
                                     .ChallengeDifficulty.HARD
@@ -218,7 +229,7 @@ private fun ClassicMenuContent(
                 ModeButton(
                     title = stringResource(id = R.string.menu_sequence_mode),
                     description = stringResource(id = R.string.menu_sequence_desc_classic),
-                    onClick = { onStartGame(GameMode.Sequence()) }
+                    onClick = { requestStartGame(GameMode.Sequence()) }
                 )
 
                 // Stats and Settings side-by-side
@@ -298,6 +309,28 @@ private fun ClassicMenuContent(
             onDismiss = { showSettings = false }
         )
     }
+
+    if (showNewGameConfirmation) {
+        AlertDialog(
+            onDismissRequest = { showNewGameConfirmation = false },
+            title = { Text(stringResource(R.string.new_game_title), fontWeight = FontWeight.Bold) },
+            text = { Text(stringResource(R.string.new_game_message)) },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        showNewGameConfirmation = false
+                        pendingGameMode?.let { onStartGame(it) }
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = AlertRedLight)
+                ) { Text(stringResource(R.string.action_start_new)) }
+            },
+            dismissButton = {
+                TextButton(onClick = { showNewGameConfirmation = false }) {
+                    Text(stringResource(R.string.action_cancel))
+                }
+            }
+        )
+    }
 }
 
 @Composable
@@ -313,6 +346,17 @@ private fun NeonMenuContent(
     var showStatsDialog by remember { mutableStateOf(false) }
     var showSettings by remember { mutableStateOf(false) }
     var showHowToPlay by remember { mutableStateOf(false) }
+    var showNewGameConfirmation by remember { mutableStateOf(false) }
+    var pendingGameMode by remember { mutableStateOf<GameMode?>(null) }
+
+    fun requestStartGame(mode: GameMode) {
+        if (onResumeGame != null) {
+            pendingGameMode = mode
+            showNewGameConfirmation = true
+        } else {
+            onStartGame(mode)
+        }
+    }
 
     // Animated background
     val infiniteTransition = androidx.compose.animation.core.rememberInfiniteTransition()
@@ -433,21 +477,21 @@ private fun NeonMenuContent(
                 title = stringResource(id = R.string.menu_normal_mode).uppercase(),
                 description = stringResource(id = R.string.menu_normal_desc_neon),
                 accentColor = CyanGlow,
-                onClick = { onStartGame(GameMode.Normal) }
+                onClick = { requestStartGame(GameMode.Normal) }
             )
 
             NeonModeButton(
                 title = stringResource(id = R.string.menu_challenge_mode).uppercase(),
                 description = stringResource(id = R.string.menu_challenge_desc_neon),
                 accentColor = MagentaPulse,
-                onClick = { onStartGame(GameMode.Challenge(io.github.jdanders.dropcount.model.ChallengeDifficulty.HARD)) }
+                onClick = { requestStartGame(GameMode.Challenge(io.github.jdanders.dropcount.model.ChallengeDifficulty.HARD)) }
             )
 
             NeonModeButton(
                 title = stringResource(id = R.string.menu_sequence_mode).uppercase(),
                 description = stringResource(id = R.string.menu_sequence_desc_neon),
                 accentColor = AmberAlert,
-                onClick = { onStartGame(GameMode.Sequence()) }
+                onClick = { requestStartGame(GameMode.Sequence()) }
             )
 
             // Action buttons
@@ -495,6 +539,28 @@ private fun NeonMenuContent(
             currentTheme = visualTheme,
             onThemeChange = onVisualThemeChange,
             onDismiss = { showSettings = false }
+        )
+    }
+
+    if (showNewGameConfirmation) {
+        AlertDialog(
+            onDismissRequest = { showNewGameConfirmation = false },
+            title = { Text(stringResource(R.string.new_game_title), fontWeight = FontWeight.Bold) },
+            text = { Text(stringResource(R.string.new_game_message)) },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        showNewGameConfirmation = false
+                        pendingGameMode?.let { onStartGame(it) }
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = AlertRedLight)
+                ) { Text(stringResource(R.string.action_start_new)) }
+            },
+            dismissButton = {
+                TextButton(onClick = { showNewGameConfirmation = false }) {
+                    Text(stringResource(R.string.action_cancel))
+                }
+            }
         )
     }
 }
@@ -678,6 +744,17 @@ private fun WoodblockMenuContent(
     var showStatsDialog by remember { mutableStateOf(false) }
     var showSettings by remember { mutableStateOf(false) }
     var showHowToPlay by remember { mutableStateOf(false) }
+    var showNewGameConfirmation by remember { mutableStateOf(false) }
+    var pendingGameMode by remember { mutableStateOf<GameMode?>(null) }
+
+    fun requestStartGame(mode: GameMode) {
+        if (onResumeGame != null) {
+            pendingGameMode = mode
+            showNewGameConfirmation = true
+        } else {
+            onStartGame(mode)
+        }
+    }
 
     // Animated brush stroke effect
     val infiniteTransition = androidx.compose.animation.core.rememberInfiniteTransition()
@@ -814,21 +891,21 @@ private fun WoodblockMenuContent(
                 title = stringResource(R.string.menu_normal_mode).uppercase(),
                 description = stringResource(R.string.menu_normal_desc_woodblock),
                 accentColor = WoodblockVermilion,
-                onClick = { onStartGame(GameMode.Normal) }
+                onClick = { requestStartGame(GameMode.Normal) }
             )
 
             WoodblockModeButton(
                 title = stringResource(R.string.menu_challenge_mode).uppercase(),
                 description = stringResource(R.string.menu_challenge_desc_woodblock),
                 accentColor = WoodblockIndigo,
-                onClick = { onStartGame(GameMode.Challenge(io.github.jdanders.dropcount.model.ChallengeDifficulty.HARD)) }
+                onClick = { requestStartGame(GameMode.Challenge(io.github.jdanders.dropcount.model.ChallengeDifficulty.HARD)) }
             )
 
             WoodblockModeButton(
                 title = stringResource(R.string.menu_sequence_mode).uppercase(),
                 description = stringResource(R.string.menu_sequence_desc_woodblock),
                 accentColor = WoodblockSage,
-                onClick = { onStartGame(GameMode.Sequence()) }
+                onClick = { requestStartGame(GameMode.Sequence()) }
             )
 
             // Action buttons
@@ -867,6 +944,28 @@ private fun WoodblockMenuContent(
             currentTheme = visualTheme,
             onThemeChange = onVisualThemeChange,
             onDismiss = { showSettings = false }
+        )
+    }
+
+    if (showNewGameConfirmation) {
+        AlertDialog(
+            onDismissRequest = { showNewGameConfirmation = false },
+            title = { Text(stringResource(R.string.new_game_title), fontWeight = FontWeight.Bold) },
+            text = { Text(stringResource(R.string.new_game_message)) },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        showNewGameConfirmation = false
+                        pendingGameMode?.let { onStartGame(it) }
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = AlertRedLight)
+                ) { Text(stringResource(R.string.action_start_new)) }
+            },
+            dismissButton = {
+                TextButton(onClick = { showNewGameConfirmation = false }) {
+                    Text(stringResource(R.string.action_cancel))
+                }
+            }
         )
     }
 }
@@ -994,6 +1093,17 @@ private fun FoundryMenuContent(
     var showStatsDialog by remember { mutableStateOf(false) }
     var showSettings by remember { mutableStateOf(false) }
     var showHowToPlay by remember { mutableStateOf(false) }
+    var showNewGameConfirmation by remember { mutableStateOf(false) }
+    var pendingGameMode by remember { mutableStateOf<GameMode?>(null) }
+
+    fun requestStartGame(mode: GameMode) {
+        if (onResumeGame != null) {
+            pendingGameMode = mode
+            showNewGameConfirmation = true
+        } else {
+            onStartGame(mode)
+        }
+    }
 
     Box(
         modifier = Modifier
@@ -1085,19 +1195,19 @@ private fun FoundryMenuContent(
             FoundryModeButton(
                 title = stringResource(R.string.menu_normal_mode).uppercase(),
                 description = stringResource(R.string.menu_normal_desc_foundry),
-                onClick = { onStartGame(GameMode.Normal) }
+                onClick = { requestStartGame(GameMode.Normal) }
             )
 
             FoundryModeButton(
                 title = stringResource(R.string.menu_challenge_mode).uppercase(),
                 description = stringResource(R.string.menu_challenge_desc_foundry),
-                onClick = { onStartGame(GameMode.Challenge(io.github.jdanders.dropcount.model.ChallengeDifficulty.HARD)) }
+                onClick = { requestStartGame(GameMode.Challenge(io.github.jdanders.dropcount.model.ChallengeDifficulty.HARD)) }
             )
 
             FoundryModeButton(
                 title = stringResource(R.string.menu_sequence_mode).uppercase(),
                 description = stringResource(R.string.menu_sequence_desc_foundry),
-                onClick = { onStartGame(GameMode.Sequence()) }
+                onClick = { requestStartGame(GameMode.Sequence()) }
             )
 
             // Action buttons
@@ -1136,6 +1246,28 @@ private fun FoundryMenuContent(
             currentTheme = visualTheme,
             onThemeChange = onVisualThemeChange,
             onDismiss = { showSettings = false }
+        )
+    }
+
+    if (showNewGameConfirmation) {
+        AlertDialog(
+            onDismissRequest = { showNewGameConfirmation = false },
+            title = { Text(stringResource(R.string.new_game_title), fontWeight = FontWeight.Bold) },
+            text = { Text(stringResource(R.string.new_game_message)) },
+            confirmButton = {
+                Button(
+                    onClick = {
+                        showNewGameConfirmation = false
+                        pendingGameMode?.let { onStartGame(it) }
+                    },
+                    colors = ButtonDefaults.buttonColors(containerColor = AlertRedLight)
+                ) { Text(stringResource(R.string.action_start_new)) }
+            },
+            dismissButton = {
+                TextButton(onClick = { showNewGameConfirmation = false }) {
+                    Text(stringResource(R.string.action_cancel))
+                }
+            }
         )
     }
 }

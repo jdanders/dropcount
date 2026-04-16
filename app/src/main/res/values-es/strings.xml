@@ -12,6 +12,7 @@
     <string name="action_stats">ESTADÍSTICAS</string>
     <string name="action_settings">AJUSTES</string>
     <string name="action_how_to_play">CÓMO JUGAR</string>
+    <string name="action_close">CERRAR</string>
 
     <!-- Menu Screen -->
     <string name="menu_title">DROPCOUNT</string>
@@ -53,6 +54,11 @@
     <!-- Dialogs -->
     <string name="restart_title">¿Reiniciar juego?</string>
     <string name="restart_message">¿Estás seguro de que quieres reiniciar? Tu progreso actual se perderá.</string>
+    <string name="new_game_title">¿Nueva partida?</string>
+    <string name="new_game_message">Iniciar una nueva partida terminará tu sesión actual. ¿Continuar?</string>
+    <string name="action_start_new">INICIAR NUEVA</string>
+    <string name="label_multiplier">CADENA x%1$d</string>
+    <string name="label_score_increment">+%1$s</string>
 
     <!-- Statistics -->
     <string name="stats_title">ESTADÍSTICAS</string>
@@ -66,6 +72,12 @@
     <string name="stats_no_data">Sin datos aún</string>
     <string name="label_best">Mejor</string>
     <string name="label_avg">Prom.</string>
+    <string name="stats_subtitle">Sigue tu progreso en todos los modos</string>
+    <string name="stats_games_played_label">PARTIDAS JUGADAS</string>
+    <string name="stats_compare_modes">Comparar todos los modos</string>
+    <string name="stats_table_mode">Modo</string>
+    <string name="stats_no_games_mode">No hay partidas jugadas aún en el modo %1$s</string>
+    <string name="stats_start_playing_desc">¡Empieza a jugar para ver tus estadísticas!</string>
 
     <!-- Settings -->
     <string name="settings_title">AJUSTES</string>
@@ -78,9 +90,14 @@
     <string name="theme_neon">Neón</string>
     <string name="theme_foundry">Fundición</string>
     <string name="theme_woodblock">Xilografía</string>
+    <string name="theme_classic_desc">Colores simples y limpios</string>
+    <string name="theme_neon_desc">Estética arcade de neón</string>
+    <string name="theme_foundry_desc">Cuadrados de concreto industrial</string>
+    <string name="theme_woodblock_desc">Arte inspirado en grabados japoneses</string>
 
     <!-- Challenge Config -->
     <string name="challenge_config_title">CONFIG. DE DESAFÍO</string>
+    <string name="label_select_difficulty">SELECCIONAR DIFICULTAD</string>
     <string name="difficulty_easy">Fácil</string>
     <string name="difficulty_medium">Medio</string>
     <string name="difficulty_hard">Difícil</string>
@@ -104,4 +121,9 @@
     <string name="acc_disc_solid">disco sólido</string>
     <string name="level_bonus_format">Bono de nivel +%1$d</string>
     <string name="board_clear_bonus_format">¡¡¡TABLERO LIMPIO!!! +%1$d</string>
+    <string name="tutorial_chain_reactions_title">Reacciones en cadena</string>
+    <string name="tutorial_chain_reactions_desc">Romper discos puede causar roturas en cadena. ¡Gana multiplicadores masivos construyendo cadenas largas!</string>
+    <string name="tutorial_new_row_title">La nueva fila</string>
+    <string name="speed_multiplier_format">Velocidad %1.11fx</string>
+    <string name="foundry_branding">EST. 2025 // OPERACIONES INDUSTRIALES</string>
 </resources>

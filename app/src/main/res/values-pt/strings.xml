@@ -54,6 +54,11 @@
     <!-- Dialogs -->
     <string name="restart_title">Reiniciar Jogo?</string>
     <string name="restart_message">Tem certeza de que deseja reiniciar? Seu progresso atual será perdido.</string>
+    <string name="new_game_title">Iniciar Novo Jogo?</string>
+    <string name="new_game_message">Iniciar um novo jogo encerrará sua sessão atual. Continuar?</string>
+    <string name="action_start_new">INICIAR NOVO</string>
+    <string name="label_multiplier">COMBO x%1$d</string>
+    <string name="label_score_increment">+%1$s</string>
 
     <!-- Statistics -->
     <string name="stats_title">ESTATÍSTICAS</string>

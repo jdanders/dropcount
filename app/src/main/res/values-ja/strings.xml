@@ -54,6 +54,11 @@
     <!-- Dialogs -->
     <string name="restart_title">ゲームを再起動しますか？</string>
     <string name="restart_message">本当に再起動しますか？現在の進行状況は失われます。</string>
+    <string name="new_game_title">新しくゲームを始める？</string>
+    <string name="new_game_message">新しくゲームを始めると、現在のセッションは終了します。続けますか？</string>
+    <string name="action_start_new">新しく始める</string>
+    <string name="label_multiplier">連鎖 x%1$d</string>
+    <string name="label_score_increment">+%1$s</string>
 
     <!-- Statistics -->
     <string name="stats_title">統計</string>
