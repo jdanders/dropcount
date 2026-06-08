@@ -3,7 +3,7 @@
 
     <!-- General Actions -->
     <string name="action_undo">ANNULER</string>
-    <string name="action_restart">RECOMANCER</string>
+    <string name="action_restart">RECOMMENCER</string>
     <string name="action_menu">MENU</string>
     <string name="action_resume">REPRENDRE</string>
     <string name="action_cancel">ANNULER</string>
