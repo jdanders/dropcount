@@ -68,7 +68,12 @@ class GameEngine(private val discGenerator: DiscGenerator) {
             // If adding new row caused game over (discs pushed out), skip chain reaction processing
             if (stateWithNewRow.status == GameStatus.GameOver) {
                 Logger.d("GameEngine", "New row caused game over - skipping chain reaction processing")
-                return DropResult(chainSteps, stateWithNewRow, stateBeforeNewRow, emptyList())
+                val finalState = updateBestDropScore(
+                    previousState = state,
+                    finalState = stateWithNewRow,
+                    levelBonusPoints = GameConfig.getLevelBonus(state.mode)
+                )
+                return DropResult(chainSteps, finalState, stateBeforeNewRow, emptyList())
             }
 
             val newRowSteps = processChainReactionsWithSteps(stateWithNewRow)
@@ -108,7 +113,28 @@ class GameEngine(private val discGenerator: DiscGenerator) {
             isBoardCleared = true
         }
 
+        finalState = updateBestDropScore(
+            previousState = state,
+            finalState = finalState,
+            levelBonusPoints = if (stateBeforeNewRow != null) GameConfig.getLevelBonus(state.mode) else 0
+        )
+
         return DropResult(chainSteps, finalState, stateBeforeNewRow, stepsAfterNewRow, isBoardCleared = isBoardCleared)
+    }
+
+    /**
+     * Updates the highest score earned from a single drop.
+     * The level-up bonus is excluded from this statistic.
+     */
+    private fun updateBestDropScore(
+        previousState: GameState,
+        finalState: GameState,
+        levelBonusPoints: Int
+    ): GameState {
+        val dropScore = finalState.score - previousState.score - levelBonusPoints
+        return finalState.copy(
+            highestSingleScore = maxOf(finalState.highestSingleScore, dropScore)
+        )
     }
 
     /**
@@ -281,15 +307,13 @@ class GameEngine(private val discGenerator: DiscGenerator) {
         // Calculate score for this chain
         val scoreGain = calculateScoreGain(chainLevel) * matchPositions.size
 
-        // Update statistics
+        // Per-drop statistics are finalized after all chains and bonuses have been applied.
         val newLongestChain = maxOf(newState.longestChain, chainLevel)
-        val newHighestSingleScore = maxOf(newState.highestSingleScore, scoreGain)
 
         newState = newState.copy(
             score = newState.score + scoreGain,
             currentChain = chainLevel,
-            longestChain = newLongestChain,
-            highestSingleScore = newHighestSingleScore
+            longestChain = newLongestChain
         )
 
         // Remove matched discs

@@ -67,7 +67,7 @@
     <string name="stats_high_score">Highest Score</string>
     <string name="stats_highest_level">Highest Level</string>
     <string name="stats_longest_chain">Longest Chain</string>
-    <string name="stats_best_move">Best Single Move</string>
+    <string name="stats_best_move">Best Drop</string>
     <string name="stats_total_drops">Total Discs Dropped</string>
     <string name="stats_all_time">All-Time Statistics</string>
     <string name="stats_no_data">No data yet</string>

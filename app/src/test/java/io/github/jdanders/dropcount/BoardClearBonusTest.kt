@@ -88,8 +88,30 @@ class BoardClearBonusTest {
         
         val expectedScore = initialScore + (7 * 2) + GameConfig.BOARD_CLEAR_BONUS_POINTS
         assertEquals("Score should include 70k bonus", expectedScore, result.finalState.score)
+        assertEquals("Best drop should include match points and board-clear bonus",
+            expectedScore - initialScore, result.finalState.highestSingleScore)
     }
-    
+
+    @Test
+    fun testBestDropExcludesLevelUpBonus() {
+        val initialScore = 250
+        val mode = GameMode.Challenge(ChallengeDifficulty.EXTREME)
+        val gameEngine = GameEngine(DiscGenerator(mode))
+        val gameState = TestUtils.createEmptyGameState(mode).copy(
+            score = initialScore,
+            nextDisc = Disc.Numbered(1),
+            dropsUntilNewRow = 1
+        )
+
+        val result = gameEngine.dropDiscWithSteps(gameState, 3)
+
+        val discClearScore = 7
+        val levelBonus = GameConfig.getLevelBonus(mode)
+        assertEquals(initialScore + discClearScore + levelBonus, result.finalState.score)
+        assertEquals("Best drop should include disc points but exclude the level-up bonus",
+            discClearScore, result.finalState.highestSingleScore)
+    }
+
     @Test
     fun testBoardClearNotAwardedOnGameOver() {
         // Setup a full board except for one cell

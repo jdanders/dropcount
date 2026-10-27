@@ -75,6 +75,42 @@ class ChainReactionTest {
         // Board Clear Bonus: 70,000
         // Total: 70,124
         assertEquals("Score should be 70,124 (7 + 117 + 70000)", 124 + GameConfig.BOARD_CLEAR_BONUS_POINTS, gameState.score)
+        assertEquals("Best drop should include both chain steps and the board-clear bonus",
+            gameState.score, gameState.highestSingleScore)
+    }
+
+    @Test
+    fun testThreeChainDropRecordsCombinedDropScore() {
+        val gameState = TestUtils.createEmptyGameState(GameMode.Normal)
+            .setCell(1, 0, Cell.Occupied(Disc.Numbered(2)))
+            .setCell(2, 1, Cell.Occupied(Disc.Numbered(4)))
+            .setCell(3, 0, Cell.Occupied(Disc.Numbered(5)))
+            .setCell(4, 1, Cell.Occupied(Disc.Numbered(4)))
+            .setCell(4, 3, Cell.Occupied(Disc.Numbered(4)))
+            .setCell(4, 5, Cell.Occupied(Disc.Numbered(7)))
+            .setCell(5, 4, Cell.Occupied(Disc.Numbered(7)))
+            .setCell(6, 0, Cell.Occupied(Disc.Numbered(3)))
+            .setCell(6, 5, Cell.Occupied(Disc.Numbered(6)))
+            .copy(nextDisc = Disc.Numbered(3), dropsUntilNewRow = 10)
+
+        val result = gameEngine.dropDiscWithSteps(gameState, 5)
+
+        val expectedDropScore = 7 + 39 + 109
+        assertEquals("The drop should trigger exactly three chain steps", 3, result.steps.size)
+        assertEquals("All three chain-step scores should be included", expectedDropScore, result.finalState.score)
+        assertEquals("Best Drop should equal the combined score from this drop",
+            expectedDropScore, result.finalState.highestSingleScore)
+
+        val followingDrop = gameEngine.dropDiscWithSteps(
+            result.finalState.copy(nextDisc = Disc.Numbered(1)),
+            2
+        )
+        val followingDropScore = followingDrop.finalState.score - result.finalState.score
+
+        assertEquals("The following drop should resolve one chain step", 1, followingDrop.steps.size)
+        assertEquals("The following drop should score 14 points", 14, followingDropScore)
+        assertEquals("Best Drop should remain the higher three-chain score",
+            expectedDropScore, followingDrop.finalState.highestSingleScore)
     }
     
     @Test

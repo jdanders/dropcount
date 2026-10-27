@@ -66,7 +66,7 @@
     <string name="stats_high_score">Pontuação Mais Alta</string>
     <string name="stats_highest_level">Nível Mais Alto</string>
     <string name="stats_longest_chain">Maior Combo</string>
-    <string name="stats_best_move">Melhor Jogada Única</string>
+    <string name="stats_best_move">Melhor lançamento</string>
     <string name="stats_total_drops">Total de discos lançados</string>
     <string name="stats_all_time">Estatísticas Gerais</string>
     <string name="stats_no_data">Sem dados ainda</string>

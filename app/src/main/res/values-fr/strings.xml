@@ -66,7 +66,7 @@
     <string name="stats_high_score">Meilleur score</string>
     <string name="stats_highest_level">Niveau le plus élevé</string>
     <string name="stats_longest_chain">Plus longue chaîne</string>
-    <string name="stats_best_move">Meilleur coup</string>
+    <string name="stats_best_move">Meilleur lancer</string>
     <string name="stats_total_drops">Nombre total de disques lancés</string>
     <string name="stats_all_time">Statistiques Globales</string>
     <string name="stats_no_data">Aucune donnée pour le moment</string>

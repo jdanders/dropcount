@@ -66,7 +66,7 @@
     <string name="stats_high_score">最高スコア</string>
     <string name="stats_highest_level">最高レベル</string>
     <string name="stats_longest_chain">最大連鎖数</string>
-    <string name="stats_best_move">一手の最高得点</string>
+    <string name="stats_best_move">最高ドロップ得点</string>
     <string name="stats_total_drops">総ドロップ数</string>
     <string name="stats_all_time">通算統計</string>
     <string name="stats_no_data">データがまだありません</string>
