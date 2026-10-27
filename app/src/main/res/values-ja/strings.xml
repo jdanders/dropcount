@@ -31,14 +31,14 @@
     <string name="menu_challenge_desc_classic">数字ディスクのみ。一定のペース。</string>
     <string name="menu_challenge_desc_neon">純粋な数字。ハードモード。集中せよ！</string>
     <string name="menu_challenge_desc_foundry">数字ユニット限定 // 固定動作周期</string>
-    <string name="menu_challenge_desc_woodblock">不変の均衡の中の純粋な象徴</string>
+    <string name="menu_challenge_desc_woodblock">変わらない均衡の中にある、純粋なシンボル</string>
 
     <string name="menu_sequence_mode">シーケンスモード</string>
     <string name="menu_sequence_desc">固定された繰り返しパターンで戦略を磨く</string>
     <string name="menu_sequence_desc_classic">固定された繰り返しのパターン。</string>
     <string name="menu_sequence_desc_neon">データストリーム！特定のコードをマスターせよ！</string>
     <string name="menu_sequence_desc_foundry">決定論的ストリーム // 反復可能プロトコル</string>
-    <string name="menu_sequence_desc_woodblock">移ろいゆく季節の中の慣れ親しんだ道</string>
+    <string name="menu_sequence_desc_woodblock">移り変わる季節を通る、なじみ深い道</string>
 
     <!-- Game Screen -->
     <string name="label_score">スコア</string>
@@ -118,7 +118,7 @@
     <string name="acc_grid_description">ゲームグリッド、レベル %1$d、スコア %2$d。盤面には %3$d 個のディスクがあります。</string>
     <string name="acc_preview_disc">次に落とすディスクは %1$s です。</string>
     <string name="acc_disc_numbered">%1$d 番のディスク</string>
-    <string name="acc_disc_solid">無地ディスク</string>
+    <string name="acc_disc_solid">数字のないディスク</string>
 
     <!-- Final strings -->
     <string name="tutorial_chain_reactions_title">連鎖反応</string>

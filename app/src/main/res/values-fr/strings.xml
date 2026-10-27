@@ -3,7 +3,7 @@
 
     <!-- General Actions -->
     <string name="action_undo">ANNULER</string>
-    <string name="action_restart">RECOMANCER</string>
+    <string name="action_restart">RECOMMENCER</string>
     <string name="action_menu">MENU</string>
     <string name="action_resume">REPRENDRE</string>
     <string name="action_cancel">ANNULER</string>
@@ -16,29 +16,29 @@
 
     <!-- Menu Screen -->
     <string name="menu_title">DROPCOUNT</string>
-    <string name="menu_subtitle">// SYSTÈME DE PUZZLE DE PRÉCISION v2.1</string>
+    <string name="menu_subtitle">// PUZZLE DE PRÉCISION v2.1</string>
     <string name="menu_resume_game">REPRENDRE LA PARTIE</string>
     <string name="menu_resume_desc">Continuer la session précédente</string>
     <string name="menu_normal_mode">Mode Normal</string>
     <string name="menu_normal_desc">Jeu standard avec disques mystères et vitesse croissante</string>
-    <string name="menu_normal_desc_classic">Disques mystères et des rangées qui tombent plus vite</string>
+    <string name="menu_normal_desc_classic">Disques mystères et rangées qui tombent de plus en plus vite</string>
     <string name="menu_normal_desc_neon">Chaos néon ! Blocs mystères et cycles de rangées plus rapides !</string>
-    <string name="menu_normal_desc_foundry">UNITÉS HYBRIDES // ACCÉLÉRATION INCREMENTALE DES RANGÉES</string>
+    <string name="menu_normal_desc_foundry">UNITÉS HYBRIDES // ACCÉLÉRATION PROGRESSIVE DES RANGÉES</string>
     <string name="menu_normal_desc_woodblock">Disques mystères et flux accéléré de nouvelles rangées</string>
 
     <string name="menu_challenge_mode">Mode Défi</string>
-    <string name="menu_challenge_desc">Uniquement des disques numérotés—rythme régulier sans blocs solides</string>
+    <string name="menu_challenge_desc">Disques numérotés uniquement — rythme régulier, sans blocs pleins</string>
     <string name="menu_challenge_desc_classic">Uniquement des disques numérotés. Cadence fixe.</string>
-    <string name="menu_challenge_desc_neon">Nombres purs. Mode expert. Restez concentré !</string>
+    <string name="menu_challenge_desc_neon">Que des chiffres. Mode expert. Restez concentré !</string>
     <string name="menu_challenge_desc_foundry">UNITÉS NUMÉROTÉES // CADENCE FIXE</string>
-    <string name="menu_challenge_desc_woodblock">Symboles purs en équilibre intemporel</string>
+    <string name="menu_challenge_desc_woodblock">Des symboles épurés dans un équilibre intemporel</string>
 
     <string name="menu_sequence_mode">Mode Séquence</string>
     <string name="menu_sequence_desc">Perfectionnez votre stratégie avec un motif fixe et répétable</string>
     <string name="menu_sequence_desc_classic">Motif fixe et répétable.</string>
     <string name="menu_sequence_desc_neon">Flux de données ! Maîtrisez le code !</string>
     <string name="menu_sequence_desc_foundry">FLUX DÉTERMINISTE // PROTOCOLE RÉPÉTABLE</string>
-    <string name="menu_sequence_desc_woodblock">Un chemin familier à travers les saisons</string>
+    <string name="menu_sequence_desc_woodblock">Un parcours familier au fil des saisons</string>
 
     <!-- Game Screen -->
     <string name="label_score">SCORE</string>
@@ -46,9 +46,9 @@
     <string name="label_level">NIVEAU</string>
     <string name="label_chain">CHAÎNE x%1$d !</string>
     <string name="label_chain_header">CHAÎNE</string>
-    <string name="label_drop_header">LANCER</string>
+    <string name="label_drop_header">LANCERS</string>
     <string name="game_over">PARTIE TERMINÉE</string>
-    <string name="final_score">Score Final</string>
+    <string name="final_score">Score final</string>
     <string name="paused">EN PAUSE</string>
 
     <!-- Dialogs -->
@@ -56,33 +56,33 @@
     <string name="restart_message">Êtes-vous sûr de vouloir recommencer ? Votre progression actuelle sera perdue.</string>
     <string name="new_game_title">Nouvelle partie ?</string>
     <string name="new_game_message">Commencer une nouvelle partie mettra fin à votre session actuelle. Continuer ?</string>
-    <string name="action_start_new">DÉMARRER</string>
+    <string name="action_start_new">NOUVELLE PARTIE</string>
     <string name="label_multiplier">CHAÎNE x%1$d</string>
     <string name="label_score_increment">+%1$s</string>
 
     <!-- Statistics -->
     <string name="stats_title">STATISTIQUES</string>
-    <string name="stats_total_games">Total de Parties Jouées</string>
-    <string name="stats_high_score">Meilleur Score</string>
+    <string name="stats_total_games">Nombre total de parties jouées</string>
+    <string name="stats_high_score">Meilleur score</string>
     <string name="stats_highest_level">Niveau le plus élevé</string>
-    <string name="stats_longest_chain">Plus Longue Chaîne</string>
-    <string name="stats_best_move">Meilleur Coup Unique</string>
-    <string name="stats_total_drops">Total de Disques Lancés</string>
+    <string name="stats_longest_chain">Plus longue chaîne</string>
+    <string name="stats_best_move">Meilleur coup</string>
+    <string name="stats_total_drops">Nombre total de disques lancés</string>
     <string name="stats_all_time">Statistiques Globales</string>
     <string name="stats_no_data">Aucune donnée pour le moment</string>
     <string name="label_best">Meilleur</string>
     <string name="label_avg">Moy.</string>
     <string name="stats_subtitle">Suivez votre progression dans tous les modes</string>
     <string name="stats_games_played_label">PARTIES JOUÉES</string>
-    <string name="stats_compare_modes">Comparer Tous les Modes</string>
+    <string name="stats_compare_modes">Comparer tous les modes</string>
     <string name="stats_table_mode">Mode</string>
     <string name="stats_no_games_mode">Aucune partie jouée pour le moment en mode %1$s</string>
     <string name="stats_start_playing_desc">Commencez à jouer pour voir vos statistiques !</string>
 
     <!-- Settings -->
     <string name="settings_title">PARAMÈTRES</string>
-    <string name="settings_animation_speed">Vitesse d\'Animation</string>
-    <string name="settings_visual_theme">Thème Visuel</string>
+    <string name="settings_animation_speed">Vitesse d’animation</string>
+    <string name="settings_visual_theme">Thème visuel</string>
     <string name="speed_slow">Lent</string>
     <string name="speed_medium">Moyen</string>
     <string name="speed_fast">Rapide</string>
@@ -91,13 +91,13 @@
     <string name="theme_foundry">Fonderie</string>
     <string name="theme_woodblock">Gravure sur bois</string>
     <string name="theme_classic_desc">Couleurs simples et épurées</string>
-    <string name="theme_neon_desc">Estétique arcade néon</string>
-    <string name="theme_foundry_desc">Carrés de béton industriel</string>
+    <string name="theme_neon_desc">Style arcade aux néons</string>
+    <string name="theme_foundry_desc">Carrés au style béton industriel</string>
     <string name="theme_woodblock_desc">Art inspiré des estampes japonaises</string>
 
     <!-- Challenge Config -->
     <string name="challenge_config_title">CONFIG. DU DÉFI</string>
-    <string name="label_select_difficulty">SÉLECTIONNER DIFFICULTÉ</string>
+    <string name="label_select_difficulty">CHOISIR LA DIFFICULTÉ</string>
     <string name="difficulty_easy">Facile</string>
     <string name="difficulty_medium">Moyen</string>
     <string name="difficulty_hard">Difficile</string>
@@ -108,8 +108,8 @@
     <!-- How to Play -->
     <string name="how_to_play_title">Comment Jouer</string>
     <string name="tutorial_step_1">Lancez des disques dans la grille 7x7.</string>
-    <string name="tutorial_step_2">Les disques se brisent lorsque le nombre de disques contigus dans leur ligne ou colonne correspond à leur valeur.</string>
-    <string name="tutorial_step_3">Les disques solides gris doivent être fissurés deux fois par des bris adjacents pour révéler leur numéro.</string>
+    <string name="tutorial_step_2">Un disque se brise lorsque le nombre de disques contigus sur sa ligne ou sa colonne correspond à sa valeur.</string>
+    <string name="tutorial_step_3">Les disques gris pleins doivent être touchés deux fois par des destructions adjacentes pour révéler leur numéro.</string>
     <string name="tutorial_step_4">Une nouvelle ligne est ajoutée par le bas après un certain nombre de lancers.</string>
     <string name="tutorial_step_5">Ne laissez pas les disques dépasser de la grille !</string>
     <string name="tutorial_got_it">COMPRIS !</string>
@@ -122,10 +122,10 @@
 
     <!-- Final strings -->
     <string name="tutorial_chain_reactions_title">Réactions en chaîne</string>
-    <string name="tutorial_chain_reactions_desc">Casser des disques peut provoquer des cassures en cascade. Gagnez d\'énormes multiplicateurs de bonus en construisant de longues chaînes !</string>
+    <string name="tutorial_chain_reactions_desc">La destruction de disques peut en déclencher d’autres en cascade. Enchaînez les réactions pour obtenir de gros multiplicateurs de bonus !</string>
     <string name="tutorial_new_row_title">La nouvelle rangée</string>
-    <string name="speed_multiplier_format">%1.1fx Vitesse</string>
+    <string name="speed_multiplier_format">Vitesse : %1.1fx</string>
     <string name="level_bonus_format">Bonus de niveau +%1$d</string>
-    <string name="board_clear_bonus_format">PLATEAU VIDÉ!!! +%1$d</string>
+    <string name="board_clear_bonus_format">PLATEAU VIDÉ ! +%1$d</string>
     <string name="foundry_branding">EST. 2025 // OPÉRATIONS INDUSTRIELLES</string>
 </resources>

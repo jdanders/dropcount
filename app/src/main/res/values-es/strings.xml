@@ -38,7 +38,7 @@
     <string name="menu_sequence_desc_classic">Patrón fijo y repetible.</string>
     <string name="menu_sequence_desc_neon">¡Flujo de datos! ¡Domina el código específico!</string>
     <string name="menu_sequence_desc_foundry">FLUJO DETERMINISTA // PROTOCOLO REPETIBLE</string>
-    <string name="menu_sequence_desc_woodblock">Un camino familiar en estaciones cambiantes</string>
+    <string name="menu_sequence_desc_woodblock">Un recorrido familiar a través de las estaciones</string>
 
     <!-- Game Screen -->
     <string name="label_score">PUNTUACIÓN</string>
@@ -67,7 +67,7 @@
     <string name="stats_highest_level">Nivel Más Alto</string>
     <string name="stats_longest_chain">Cadena Más Larga</string>
     <string name="stats_best_move">Mejor Movimiento Único</string>
-    <string name="stats_total_drops">Total de Discos Soltados</string>
+    <string name="stats_total_drops">Total de discos lanzados</string>
     <string name="stats_all_time">Estadísticas Históricas</string>
     <string name="stats_no_data">Sin datos aún</string>
     <string name="label_best">Mejor</string>
@@ -108,15 +108,15 @@
     <!-- How to Play -->
     <string name="how_to_play_title">Cómo Jugar</string>
     <string name="tutorial_step_1">Suelta discos en la cuadrícula de 7x7.</string>
-    <string name="tutorial_step_2">Los discos se rompen cuando el número de discos contiguos en su fila o columna coincide con su valor.</string>
-    <string name="tutorial_step_3">Los discos sólidos grises deben agrietarse dos veces por roturas adyacentes para revelar su número.</string>
+    <string name="tutorial_step_2">Un disco se rompe cuando el número de discos contiguos en su fila o columna coincide con su valor.</string>
+    <string name="tutorial_step_3">Los discos grises macizos deben recibir dos impactos de destrucciones adyacentes para revelar su número.</string>
     <string name="tutorial_step_4">Se añade una nueva fila desde abajo después de un cierto número de lanzamientos.</string>
     <string name="tutorial_step_5">¡No dejes que los discos se salgan de la cuadrícula!</string>
     <string name="tutorial_got_it">¡ENTENDIDO!</string>
 
     <!-- Accessibility -->
     <string name="acc_grid_description">Cuadrícula de juego, nivel %1$d, puntuación %2$d. El tablero contiene %3$d discos.</string>
-    <string name="acc_preview_disc">El siguiente disco a soltar es %1$s.</string>
+    <string name="acc_preview_disc">El siguiente disco que se lanzará es %1$s.</string>
     <string name="acc_disc_numbered">numerado %1$d</string>
     <string name="acc_disc_solid">disco sólido</string>
     <string name="level_bonus_format">Bono de nivel +%1$d</string>
@@ -124,6 +124,6 @@
     <string name="tutorial_chain_reactions_title">Reacciones en cadena</string>
     <string name="tutorial_chain_reactions_desc">Romper discos puede causar roturas en cadena. ¡Gana multiplicadores masivos construyendo cadenas largas!</string>
     <string name="tutorial_new_row_title">La nueva fila</string>
-    <string name="speed_multiplier_format">Velocidad %1.11fx</string>
+    <string name="speed_multiplier_format">Velocidad: %1.1fx</string>
     <string name="foundry_branding">EST. 2025 // OPERACIONES INDUSTRIALES</string>
 </resources>

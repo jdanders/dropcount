@@ -30,14 +30,14 @@
     <string name="menu_challenge_desc">Nur nummerierte Scheiben—gleichmäßiges Tempo ohne solide Blöcke</string>
     <string name="menu_challenge_desc_classic">Nur nummerierte Scheiben. Festes Tempo.</string>
     <string name="menu_challenge_desc_neon">Reine Zahlen. Hard-Mode. Bleib fokussiert!</string>
-    <string name="menu_challenge_desc_foundry">NUR NUMMERIERTE EINHEITEN // FIXER CADANCE</string>
+    <string name="menu_challenge_desc_foundry">NUR NUMMERIERTE EINHEITEN // FESTER TAKT</string>
     <string name="menu_challenge_desc_woodblock">Reine Symbole in zeitlosem Gleichgewicht</string>
 
     <string name="menu_sequence_mode">Sequenzmodus</string>
     <string name="menu_sequence_desc">Perfektionieren Sie Ihre Strategie mit einem festen, wiederholbaren Muster</string>
     <string name="menu_sequence_desc_classic">Festes, wiederholbares Muster.</string>
     <string name="menu_sequence_desc_neon">Datenstrom! Meistere den spezifischen Code!</string>
-    <string name="menu_sequence_desc_foundry">DETERMINISTISCHER STROM // REPRODUZIERBARER PROTOKOLL</string>
+    <string name="menu_sequence_desc_foundry">DETERMINISTISCHER ABLAUF // WIEDERHOLBARES PROTOKOLL</string>
     <string name="menu_sequence_desc_woodblock">Ein vertrauter Pfad durch den Wandel der Zeiten</string>
 
     <!-- Game Screen -->
@@ -109,7 +109,7 @@
     <string name="how_to_play_title">Spielanleitung</string>
     <string name="tutorial_step_1">Wirf Scheiben in das 7x7 Gitter.</string>
     <string name="tutorial_step_2">Scheiben brechen, wenn die Anzahl der zusammenhängenden Scheiben in ihrer Reihe oder Spalte ihrem Wert entspricht.</string>
-    <string name="tutorial_step_3">Graue solide Scheiben müssen durch benachbarte Brüche zweimal gespalten werden, um ihre Zahl zu enthüllen.</string>
+    <string name="tutorial_step_3">Graue Scheiben müssen durch benachbarte Zerstörungen zweimal angeknackst werden, damit ihre Zahl sichtbar wird.</string>
     <string name="tutorial_step_4">Nach einer bestimmten Anzahl von Würfen wird von unten eine neue Reihe hinzugefügt.</string>
     <string name="tutorial_step_5">Lass die Scheiben nicht über das Gitter hinauswachsen!</string>
     <string name="tutorial_got_it">VERSTANDEN!</string>
@@ -118,7 +118,7 @@
     <string name="acc_grid_description">Spielfeld, Level %1$d, Punkte %2$d. Feld enthält %3$d Scheiben.</string>
     <string name="acc_preview_disc">Nächste Scheibe ist %1$s.</string>
     <string name="acc_disc_numbered">Nummer %1$d</string>
-    <string name="acc_disc_solid">solide Scheibe</string>
+    <string name="acc_disc_solid">gefüllte Scheibe</string>
 
     <!-- Final strings -->
     <string name="tutorial_chain_reactions_title">Kettenreaktionen</string>
