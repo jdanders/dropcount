@@ -1,3 +1,9 @@
+[<img src="https://img.shields.io/github/v/release/jdanders/dropcount.svg?logo=github"
+    alt="Release version"
+    height="80">](https://github.com/jdanders/dropcount/releases/latest) [<img src="https://img.shields.io/f-droid/v/io.github.jdanders.dropcount.svg?logo=F-Droid"
+    alt="Get it on F-Droid"
+    height="80">](https://f-droid.org/packages/io.github.jdanders.dropcount)
+
 # DropCount - Android Game
 
 A recreation of the classic Drop7 puzzle game for Android, built with Kotlin and Jetpack Compose.
