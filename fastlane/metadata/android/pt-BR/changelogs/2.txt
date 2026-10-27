@@ -1,0 +1,8 @@
+DropCount 1.2<br>
+<br>
+<ul>
+<li>Melhor lançamento agora considera toda a reação em cadeia, sem incluir o bônus de nível</li>
+<li>Melhorias na escala do texto, nas quebras de linha e na formatação dos números das estatísticas</li>
+<li>Adicionada uma confirmação antes de reiniciar uma partida</li>
+<li>Traduções atualizadas e corrigidas</li>
+</ul>

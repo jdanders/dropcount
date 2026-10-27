@@ -1,0 +1,8 @@
+DropCount 1.2<br>
+<br>
+<ul>
+<li>Der Bestwert pro Wurf berücksichtigt jetzt alle Kettenreaktionen, aber keine Levelaufstiegsboni</li>
+<li>Textskalierung, Zeilenumbrüche und Zahlenformatierung in den Statistiken verbessert</li>
+<li>Bestätigung vor dem Neustart eines Spiels hinzugefügt</li>
+<li>Übersetzungen aktualisiert und korrigiert</li>
+</ul>

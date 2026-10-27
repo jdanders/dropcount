@@ -1,0 +1,8 @@
+DropCount 1.2<br>
+<br>
+<ul>
+<li>Best Drop now counts all chain reactions from a drop, excluding level-up bonuses</li>
+<li>Improved statistics text scaling, wrapping, and number formatting</li>
+<li>Added a confirmation before restarting a game</li>
+<li>Updated and corrected translations</li>
+</ul>

@@ -1,0 +1,8 @@
+DropCount 1.2<br>
+<br>
+<ul>
+<li>Le meilleur lancer inclut désormais toute la réaction en chaîne, hors bonus de niveau</li>
+<li>Amélioration de l’affichage des statistiques : taille du texte, retours à la ligne et format des nombres</li>
+<li>Ajout d’une confirmation avant de recommencer une partie</li>
+<li>Traductions mises à jour et corrigées</li>
+</ul>
